@@ -103,10 +103,11 @@ h1 {
                             <textarea id="message" name="message" class="form-control" placeholder="The best tutor ever" rows="3" required></textarea>
                         </div>
                 
-                        <div class="mb-3">
-                            <label for="ratings" class="form-label">Ratings</label>
-                            <input type="number" id="ratings" name="ratings" class="form-control" placeholder="4" min="1" max="5" required>
-                        </div>
+						<div class="mb-3">
+						    <label for="ratings" class="form-label">Ratings</label>
+						    <input type="number" id="ratings" name="ratings" class="form-control" placeholder="value between 1 and 5" min="1" max="5" required
+						           inputmode="numeric" oninput="validateRatings(this)" />
+						</div>
                 
                         <input type="hidden" id="tutorEmail" name="tutorEmail" value="<%= tutorEmail %>" required>
                 
@@ -138,6 +139,15 @@ h1 {
             window.location.href = '/'; // Redirect to the root URL
         });*/
 
+		function validateRatings(input) {
+		    const value = parseInt(input.value, 10);
+		    if (value < 1) {
+		        input.value = 1;
+		    } else if (value > 5) {
+		        input.value = 5;
+		    }
+		}
+		
     </script>
 
 </body>

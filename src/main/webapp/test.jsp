@@ -931,8 +931,11 @@
 
  </head>
     <body>
+		
+
 
         <nav class="navbar">
+			
             <img src="apex.png" alt="Logo" class="logo" id="logo_image">
             <button class="navbar-toggle" id="navbar-toggle">
                 <i class="fas fa-bars"></i> <!-- Hamburger icon -->

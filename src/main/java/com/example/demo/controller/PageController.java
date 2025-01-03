@@ -914,6 +914,7 @@ public class PageController {
 		        data.addObject("email", email);	
 		        
 		        return data;   
+		        
 		    }
 		    
 
@@ -1128,7 +1129,7 @@ public class PageController {
 				 @GetMapping("/bookingTutor")
 				 public String bookingForm() {
 					 
-						return "bookTutor.html";
+						return "forward:/bookTutor.html";
 					 
 				 }
 				 
@@ -1319,7 +1320,7 @@ public class PageController {
 					@GetMapping("/matric-rewrite")
 				       public String onlineClasses() {
 
-							return "OnlineClasses.html";
+							return "forward:/OnlineClasses.html";
 						
 						}
 					
@@ -1510,7 +1511,7 @@ public class PageController {
 						@GetMapping("/maths-class")
 					       public String mathsOnlineClasses() {
 
-								return "maths_classes.html";
+								return "forward:/maths_classes.html";
 							
 							}
 						
@@ -1717,7 +1718,7 @@ public class PageController {
 						 @GetMapping("/become-tutor")
 					       public String becomeTutorApplication() {
 
-								return "becomeTutor.html";
+								return "forward:/becomeTutor.html";
 							
 							}
 

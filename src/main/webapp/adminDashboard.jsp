@@ -3571,6 +3571,7 @@
 																	<input type="hidden" id="rSurname" name="rSurname" class="form-control"/>
 																	<input type="hidden" id="rModules" name="rModules" class="form-control"/>
 																	<input type="hidden" id="rExp" name="rExp" class="form-control"/>
+																	<button  type="button" class="btn btn-danger" id="uns" onclick="unsuccessfulApp()">Delete</button>
 																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 																	<button type="submit" class="btn btn-success" id="praise" onclick="sendOut()">Accept</button>
 																
@@ -3581,10 +3582,6 @@
 														</div>
 													</div>
 	
-
-
-
-
 												<!--View Reviews Modal-->
 
 												<div id="reviewModal" class="modal fade" tabindex="-1" role="dialog"
@@ -3624,6 +3621,7 @@
 
 																</div>
 																<div class="modal-footer">
+																	
 																	<button type="button" class="btn btn-secondary"
 																		data-dismiss="modal">Close</button>
 																	<button class="btn btn-success"
@@ -5843,7 +5841,7 @@
 												document.getElementById("rCountry").value =country;
 												document.getElementById("rDOB").value = dateOnly;
 												document.getElementById("rSurname").value = surname;
-												document.getElementById("rModules").value = "Module1, Module2";
+												document.getElementById("rModules").value = qual;
 												document.getElementById("rExp").value = exp;
 											
 
@@ -6028,7 +6026,16 @@
 
 											}
 
+											
+											function unsuccessfulApp(){
 
+													alert("Tutor Application Deleted");
+													document.getElementById("uns").style.display = 'none';
+													
+									
+											}
+
+											
 											//edit the country and province 
 											function toggleProvinceVisibility() {
 												var country = document.getElementById("editcountry").value;

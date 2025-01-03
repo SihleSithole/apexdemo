@@ -935,7 +935,7 @@
     
                 <!--Book Tutor Button-->
                 <div class="profile-action">
-                    <button id="book-tutor-button" class="book-tutor-button" onclick="openOpenopen('<%= fullName %>' , '<%= email %>', '<%= curriculum %>', '<%= grades %> ', '<%= subjects %> ')">Book <%= name %></button>
+                    <button id="book-tutor-button" class="book-tutor-button" onclick="goBack()">Back</button>
                 </div>
 
 
@@ -1031,6 +1031,18 @@
                     %>
 
                 </div>
+				
+				
+				<div class="short-paragraph">
+				    Your Personal Tutor in the Comfort of Your Own Home
+				    <br>
+				    <!--Book Tutor Button and find tutor-->
+				    <div class="button-action">
+				        <button id="book-tutor-button" class="book-tutor-button" onclick="openOpenopen('<%= fullName %>' , '<%= email %>', '<%= curriculum %>', '<%= grades %> ', '<%= subjects %>')">Book <%= name %></button>
+				        <button id="find-tutor-button" class="find-tutor-button" onclick="window.location.href='https://bookatutorapexacademiccentre.co.za/';">Find Me A Tutor</button>
+				    </div>
+				</div>
+				
 
                 <div class="long-paragraph">
                     See the feedback and accolades from individuals who have experienced my work firsthand.
@@ -1098,15 +1110,7 @@
                     
                 </section>
 
-                <div class="short-paragraph">
-                    Your Personal Tutor in the Comfort of Your Own Home
-                    <br>
-                    <!--Book Tutor Button and find tutor-->
-                    <div class="button-action">
-                        <button id="book-tutor-button" class="book-tutor-button" onclick="openOpenopen('<%= fullName %>' , '<%= email %>', '<%= curriculum %>', '<%= grades %> ', '<%= subjects %>')">Book <%= name %></button>
-                        <button id="find-tutor-button" class="find-tutor-button" onclick="window.location.href='https://bookatutorapexacademiccentre.co.za/';">Find Me A Tutor</button>
-                    </div>
-                </div>
+
 
             </div>
 
@@ -5439,6 +5443,10 @@ function subscribeMethod() {
     return true; 
 }
 
+
+    function goBack() {
+        window.history.back();
+    }
 
 
     </script>
