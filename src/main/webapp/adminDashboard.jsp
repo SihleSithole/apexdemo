@@ -3571,7 +3571,7 @@
 																	<input type="hidden" id="rSurname" name="rSurname" class="form-control"/>
 																	<input type="hidden" id="rModules" name="rModules" class="form-control"/>
 																	<input type="hidden" id="rExp" name="rExp" class="form-control"/>
-																	<button  type="button" class="btn btn-danger" id="uns" onclick="unsuccessfulApp()">Delete</button>
+																	<button  type="submit" class="btn btn-danger" form="myFormform" id="uns" onclick="unsuccessfulApp()">Delete</button>
 																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 																	<button type="submit" class="btn btn-success" id="praise" onclick="sendOut()">Accept</button>
 																
@@ -3581,7 +3581,12 @@
 															</div>
 														</div>
 													</div>
-	
+													
+													
+													<form id="myFormform" action="/deleteApplicant" method="post"> 
+													   <input type="hidden" id="emailApplicant" name="emailApplicant" required>
+													</form>		
+								  
 												<!--View Reviews Modal-->
 
 												<div id="reviewModal" class="modal fade" tabindex="-1" role="dialog"
@@ -6023,7 +6028,6 @@
 													alert("Tutor Successfully Added.");
 													document.getElementById("praise").style.display = 'none';
 						             			
-
 											}
 
 											
@@ -6031,6 +6035,13 @@
 
 													alert("Tutor Application Deleted");
 													document.getElementById("uns").style.display = 'none';
+													document.getElementById("praise").style.display = 'none';
+													
+													var email = document.getElementById("rEmail").value;
+													
+													document.getElementById("emailApplicant").value = email;
+													
+												    alert(email);
 													
 									
 											}

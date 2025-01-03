@@ -36,6 +36,7 @@ import com.example.demo.model.MathsClass;
 import com.example.demo.model.OnlineClass;
 import com.example.demo.model.Review;
 import com.example.demo.model.Tutor;
+import com.example.demo.repository.BecomeTutorRepository;
 import com.example.demo.repository.TutorRepository;
 import com.example.demo.service.AdminService;
 import com.example.demo.service.BecomeTutorService;
@@ -84,6 +85,9 @@ public class PageController {
 	 
 	 @Autowired
 	 private TutorRepository tutorRepo;
+	 
+	 @Autowired
+	 private BecomeTutorRepository becomeTutorRepo;
 
 	/*@GetMapping("/")
 	public ModelAndView bookTutorPage() {
@@ -162,8 +166,35 @@ public class PageController {
 		List<Booking> booking = bookingService.listAll();
 		List<Review> reviews = reviewService.listAll();
 		List<OnlineClass> rewrite = onlineService.listAll();
+
+		// Sorting the list with "Not opened" classes on top
+		rewrite.sort((class1, class2) -> {
+		    // First compare based on the status, putting "Not opened" at the top
+		    if ("Pending".equals(class1.getAction()) && !"Pending".equals(class2.getAction())) {
+		        return -1; // class1 should come before class2
+		    } else if (!"Pending".equals(class1.getAction()) && "Pending".equals(class2.getAction())) {
+		        return 1; // class1 should come after class2
+		    }
+		    return 0; // If both have the same status, maintain the order
+		});
+		
 		List<MathsClass> mathsClasses = mathsService.listAll();
+		
+		// Sorting the list with "Not opened" classes on top
+		mathsClasses.sort((class1, class2) -> {
+		    // First compare based on the status, putting "Not opened" at the top
+		    if ("Pending".equals(class1.getAction()) && !"Pending".equals(class2.getAction())) {
+		        return -1; // class1 should come before class2
+		    } else if (!"Pending".equals(class1.getAction()) && "Pending".equals(class2.getAction())) {
+		        return 1; // class1 should come after class2
+		    }
+		    return 0; // If both have the same status, maintain the order
+		});
+		
+		
 		List<BecomeTutor> becomeTutor = becomeTutorService.listAll();
+		
+        becomeTutor.sort((tutor1, tutor2) -> tutor2.getCreatedAt().compareTo(tutor1.getCreatedAt()));
 		
 		if(email.equals("info@apexacademiccentre.co.za")) {
 		
@@ -280,6 +311,45 @@ public class PageController {
 		 return "redirect:/admin";
 		 
 	 }
+	 
+	 @PostMapping("/deleteApplicant")
+     public String deleteApplicant(@RequestParam("emailApplicant") String email ) {
+		 
+		 Optional<BecomeTutor> opT = becomeTutorRepo.findById(email);
+		 BecomeTutor pTutor = new BecomeTutor();
+		 
+	        if (opT.isPresent()){
+				 
+	        	pTutor = opT.get();
+	
+			 }
+	        
+	        String sHeading = "Dear " + pTutor.getName() + " " + pTutor.getSurname();
+	        
+	        /*Send unsuccessful email to the applicant*/
+			   
+				senderService.sendSimpleEmail(email, "Update on Your Tutor Application" ,
+				sHeading+"\n\nThank you for your interest in joining our team of tutors at Apex Academic Centre. We appreciate the time you took to complete our Become a Tutor form.\n"
+						+ "\n"
+						+ "After careful review, we regret to inform you that your current qualifications do not meet our requirements. However, we encourage you to continue developing your skills and qualifications.\n"
+						+ "\n"
+						+ "We invite you to reapply in the future once you have upgraded your qualifications. We appreciate your passion for education and look forward to considering your application again soon.\n"
+						+ "\n"
+						+ "Kind regards,\n"
+						+ "\n"
+						+ "Apex Academic Centre Team");
+
+			/*Delete The Application*/
+				
+				   BecomeTutor tutor = new BecomeTutor();
+				   tutor.setEmail(email);
+				   becomeTutorService.delete(tutor);
+			   
+		    return "redirect:/admin";
+		 
+	 }
+	 
+	 
 	 
 	 @PostMapping("/editTutor")//only admin have access
 		public String updateTutor(@RequestParam("editprofile") MultipartFile profile , @RequestParam("edithiddenName")  String name 
@@ -1453,6 +1523,7 @@ public class PageController {
 				        			amount);
 				            
 				            onlineService.save(onlineClass);
+				            
 				            String clientName = name + " " + surname;
 	
 				            /*Email to Apex*/
