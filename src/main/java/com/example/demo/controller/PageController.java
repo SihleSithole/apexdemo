@@ -133,9 +133,6 @@ public class PageController {
 	     long totalItems = page.getTotalElements();
 	     List<Tutor> countries = page.getContent();
 
-	     // Log for debugging
-	     System.out.println("Total pages " + totalPages);
-	     System.out.println("Total Items " + totalItems);
 
 	     // Create a ModelAndView object
 	     ModelAndView modelAndView = new ModelAndView();

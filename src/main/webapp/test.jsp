@@ -936,7 +936,7 @@
 
         <nav class="navbar">
 			
-            <img src="apex.png" alt="Logo" class="logo" id="logo_image">
+            <img src="apex.png" alt="Logo" loading="lazy" class="logo" id="logo_image">
             <button class="navbar-toggle" id="navbar-toggle">
                 <i class="fas fa-bars"></i> <!-- Hamburger icon -->
             </button>
@@ -1033,8 +1033,8 @@
         <div class="tutor-wrapper">
             <!-- Container for images -->
             <div class="image-wrapper">
-                <img src="apex_child.jpeg" alt="Image 1" class="image image1">
-                <img src="In-person Tutor & Student Apex Academic Centre.jpg" alt="Image 2" class="image image2">  
+                <img src="apex_child.jpeg" loading="lazy" alt="Image 1" class="image image1">
+                <img src="In-person Tutor & Student Apex Academic Centre.jpg" loading="lazy" alt="Image 2" class="image image2">  
             </div>
             <div class="whatsapp-wrapper">
                   <a href="https://wa.me/27680351845?text=Hi%20*Apex%20Academic%20Centre*!%20I%20need%20more%20info%20about%20Apex%20Academic%20Centre%20https://www.apexacademiccentre.co.za" target="_blank" class="whatsapp-icon">
@@ -1067,7 +1067,7 @@
                     <div class="top">
                         <div class="row">
                         <div class="profile">
-                            <img src="data:image/png;base64,<%= iSmage %>" alt="Member Image">
+                            <img src="data:image/png;base64,<%= iSmage %>" loading="lazy" alt="Member Image">
                         </div>
                         <div class="details">
                             <p>
@@ -1995,7 +1995,7 @@
             <!-- First Column -->
             <div class="links">
                 <div class="column" style="padding-left: 14px;">
-                   <img src="logoo.png" alt="Logo" class="logo-style" id="logo_image"><br>
+                   <img src="logoo.png" loading="lazy" alt="Logo" class="logo-style" id="logo_image"><br>
                     <p class="aboutApex">Apex Academic Centre delivers personalized, high-quality tutoring across the globe. Our experienced tutors empower students to excel in IEB, CAPS, Cambridge, and Pearson Edexcel curricula through flexible online and in-person learning solutions.</p>
                     <br>
                     <h3 class="footer-heading">  Contact Info</h3><br>
@@ -4590,7 +4590,7 @@ var yearIn = yearFor ? yearFor.value : 'None';
           
             if(valuee >= 8 && valuee <= 11){
 
-               discountAmount = (5 / 100) * calcAmount; // 5% discount applied
+               discountAmount = (5 / 100) * calcAmount; 
                amountAfterDiscount = calcAmount - discountAmount; // Subtract the discount
                amountAfterDiscount = amountAfterDiscount.toString();
                amountTopay = amountAfterDiscount;

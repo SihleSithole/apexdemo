@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -90,13 +91,15 @@ public class TutorService {
 	
 	/* all the tutors with pagination*/
 	
-
+	@Cacheable("tutorsPageCache")
 	public Page<Tutor> findPage(int pageNumber){
 		
 	    Pageable pageable = PageRequest.of(pageNumber - 1, 10, Sort.by(Sort.Order.desc("ratings")));
 	    return repo.findAll(pageable);
 	    
 	}
+	
+
 	
 
 	
