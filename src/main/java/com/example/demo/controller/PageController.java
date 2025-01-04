@@ -4,7 +4,6 @@ package com.example.demo.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,7 +53,6 @@ import jakarta.servlet.http.HttpSession;
 public class PageController {
 	
 
-	
 	@Autowired
 	private EmailSenderService senderService;
 	
@@ -89,27 +86,6 @@ public class PageController {
 	 @Autowired
 	 private BecomeTutorRepository becomeTutorRepo;
 
-	/*@GetMapping("/")
-	public ModelAndView bookTutorPage() {
-	
-		
-	    List<Tutor> tutors = tutorService.listAll();
-	    
-	    Collections.sort(tutors, new Comparator<Tutor>() {
-	        @Override
-	        public int compare(Tutor t1, Tutor t2) {
-	            return Integer.compare(t2.getRatings(), t1.getRatings());
-	        }
-	    });
-
-	    ModelAndView data = new ModelAndView("tutorsLandingPage.jsp");
-	    data.addObject("tutors", tutors);
-	    
-	    return data;
-	}
-	
-	*/
-	
 	 @GetMapping("/")
 	 public ModelAndView getAllPages(@RequestParam(value = "page", defaultValue = "1") int currentPage) {
 	     return getOnePage(currentPage);
@@ -143,8 +119,8 @@ public class PageController {
 	     modelAndView.addObject("totalItems", totalItems);
 	     modelAndView.addObject("countries", countries);
 
-	     // Set the view name (for example, "test.html" or "test" if using Thymeleaf)
-	     modelAndView.setViewName("test.jsp"); // Assuming "test.html" or "test" is your view template
+	 
+	     modelAndView.setViewName("test.jsp"); 
 
 	     // Return the ModelAndView object
 	     return modelAndView;
@@ -1372,7 +1348,8 @@ public class PageController {
 					@GetMapping("/searchOptimazation")
 				       public ModelAndView searchOptimazation(HttpSession session) {
 						
-						List<Tutor> tutors = (List<Tutor>) session.getAttribute("filteredTutors");
+					
+						List<Tutor> tutors = (List<Tutor>)session.getAttribute("filteredTutors");
 						    
 							ModelAndView data = new ModelAndView("tutorsSearchPage.jsp");
 							data.addObject("tutors" , tutors);
@@ -1810,7 +1787,7 @@ public class PageController {
 						        Date dob = new SimpleDateFormat("yyyy-MM-dd").parse(dobString);
 						        
 						        int experience = 2024 - Integer.parseInt(tutorRegister.get("experience"));
-						        String exp = String.valueOf(experience);
+						       
 						        
 						        String phone = tutorRegister.get("phone");
 						        String area = tutorRegister.get("area");
@@ -1822,7 +1799,7 @@ public class PageController {
 					    	   
 					    	    String bio = tutorRegister.get("bio");
 					    	    String about = tutorRegister.get("about");
-					    	    String status = tutorRegister.get("status");
+					    	  
 					    	    String achievements = tutorRegister.get("achievements");
 					    	    
 					    	    String province = "n/a";
@@ -2026,8 +2003,8 @@ public class PageController {
 							     
 								
 							        String search = "l"+location;
-							        String sendLocation = "";
-							        
+							      
+							       
 							        String[] v = search.split("_");
 							        
 							        System.out.println(v.length);
@@ -2536,9 +2513,7 @@ public class PageController {
 								    
 								    return data;
 								}
-							 
-
-
+			
 						 
 							 }
 
