@@ -1,0 +1,242 @@
+        .profile-container {
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .profile-row {
+            display: flex;
+            align-items: flex-start;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .profile-picture {
+            width: 100px; /* Set width */
+            height: 110px; /* Set height for a rectangular shape */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ddd; /* Added border */
+            border-radius: 8px; /* Optional: rounded corners */
+            overflow: hidden; /* Ensures the image does not overflow the div */
+        }
+
+        .profile-picture img {
+            width: 100%; /* Fill the width of the parent div */
+            height: 100%; /* Fill the height of the parent div */
+            object-fit: cover; /* Ensure the image covers the entire div */
+        }
+
+        .profile-info {
+            flex: 1;
+            padding-left: 20px;
+            margin-left: 16px;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .profile-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .profile-mode {
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #007BFF;
+            padding-left: 20px;
+            margin-top: 20px;
+        }
+
+        .profile-action {
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 20px;
+            margin-top: 70px;
+        }
+
+        .book-tutor-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #02A552;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 150px;
+        }
+
+        .book-tutor-button:hover {
+            background-color: white;
+            color : #02A552;
+        }
+
+        .additional-info-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .hours-tutored, .background-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        .hours-tutored i, .background-check i {
+            margin-right: 5px;
+        }
+
+        .background-check {
+            color: green;
+        }
+
+        .ratings i {
+            color: #FFDB58;
+        }
+
+        .about-tutor-row, .qualifications-row, .subjects-row, .reviews-row {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .about-tutor-title, .qualifications-title, .subjects-title, .reviews-title {
+            width: 100px; /* Same width as profile picture */
+            height: 100px; /* Same height as profile picture */
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            padding: 10px; /* Optional, for spacing */
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center; /* Center the text */
+        }
+
+        .about-tutor-info, .qualifications-info, .subjects-info, .reviews-info {
+            flex: 1;
+            color: #555;
+            padding-left: 20px;
+            margin-left: 16px;
+            
+        }
+
+        .reviews-info p {
+            margin: 5px 0;
+            font-style: italic; /* Italicize the reviews */
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* Popup container */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 1000px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            z-index: 1000;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Popup content */
+        .popup-content {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 80vh;
+            position: relative;
+        }
+
+        /* Close button */
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Backdrop */
+        .backdrop {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        #profile_qualification {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 300px));
+            grid-gap: 10px; /* Space between grid items */
+        }
+
+        .qualification {
+            display: inline-block;
+            padding: 5px;
+            background-color: gainsboro;
+            border-radius: 4px;
+            color: blue;
+            text-align: center; /* Center text inside the span */
+        }
+
+        
+          #profile_subjects {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 300px));
+            grid-gap: 10px; /* Space between grid items */
+        }
+
+        .subjectt {
+            display: inline-block;
+            padding: 5px;
+            background-color: gainsboro;
+            border-radius: 4px;
+            color: blue;
+            text-align: center; /* Center text inside the span */
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        

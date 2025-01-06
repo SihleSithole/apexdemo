@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Book a class | Expert Online and In-person Tutors | Apex Academic Centre</title>
+	<meta name="description"
+		content="Get personalized tutoring with Apex Academic Centre's expert online and in-person tutors. Book your tutor today!">
+
+	<!-- SEO Image -->
+	<link rel="icon" href="seo_logo.jpeg" sizes="50x50" type="image/x-icon">
+
+	<!-- Open Graph Protocol (Facebook, LinkedIn) -->
+	<meta property="og:title" content="Book a Tutor | Expert Online and In-person Tutors | Apex Academic Centre">
+	<meta property="og:description"
+		content="Get personalized tutoring with Apex Academic Centre's expert online and in-person tutors. Book your tutor today!">
+	<meta property="og:image" content="https://bookatutorapexacademiccentre.co.za/seo.jpeg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:url" content="https://bookatutorapexacademiccentre.co.za/">
+	<meta property="og:type" content="website">
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Book a Tutor | Expert Online and In-person Tutors | Apex Academic Centre">
+	<meta name="twitter:description"
+		content="Get personalized tutoring with Apex Academic Centre's expert online and in-person tutors. Book your tutor today!">
+	<meta name="twitter:image" content="https://bookatutorapexacademiccentre.co.za/seo.jpeg">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link href="assets/css/mainTutormain.css" rel="stylesheet">
+	<link href="bookTutor.css" rel="stylesheet">
+
+	<style>
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: flex-start;
+			height: 100vh;
+			margin: 0;
+			font-family: Arial, sans-serif;
+			background-color: #f0f0f0;
+		}
+
+		.form-container {
+
+			border: 1px solid #ccc;
+			padding: 30px;
+			border-radius: 5px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			width: 770px;
+			background: #fff;
+			margin-top: 8%;
+		}
+
+		.form-section {
+			margin-bottom: 20px;
+		}
+
+		.form-row {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 20px;
+		}
+
+		.form-group {
+			flex: 1;
+			margin-right: 20px;
+		}
+
+		.form-group:last-child {
+			margin-right: 0;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 5px;
+		}
+
+		input,
+		select,
+		textarea {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+			margin-bottom: 15px;
+		}
+
+		.required {
+			color: red;
+		}
+
+		button {
+			padding: 12px 15px;
+			font-size: 16px;
+			border: none;
+			border-radius: 4px;
+			background-color: #007BFF;
+			color: white;
+			cursor: pointer;
+			transition: background-color 0.3s;
+			width: 100%;
+		}
+
+		button:hover {
+			background-color: #0056b3;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		.error {
+			color: red;
+			font-size: 12px;
+		}
+
+		.subjects-container {
+			display: none;
+			flex-wrap: wrap;
+			gap: 10px;
+		}
+
+		.subject-option {
+			flex: 1 0 calc(25% - 10px);
+			display: flex;
+			align-items: center;
+		}
+
+		.subject-label {
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			width: calc(100% - 15px);
+			margin-bottom: 10px;
+		}
+
+		.terms-label {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+
+		.terms-label a {
+			color: #007BFF;
+			text-decoration: none;
+			margin-left: 5px;
+		}
+
+		.terms-label a:hover {
+			text-decoration: underline;
+		}
+
+		.div-container {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 20px;
+			margin-bottom: 20px;
+		}
+
+		.custom-div {
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			padding: 20px;
+			flex: 1 0 calc(30% - 20px);
+		}
+
+		.package-details {
+			cursor: pointer;
+			color: #007BFF;
+			margin: 10px 0;
+		}
+
+		.btns_wrap {
+			display: flex;
+			justify-content: space-between;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<nav class="navbar">
+		<img src="apex.png" alt="Logo" class="logo" id="logo_image">
+		<button class="navbar-toggle" id="navbar-toggle">
+			<i class="fas fa-bars"></i> <!-- Hamburger icon -->
+		</button>
+		<ul class="nav-links">
+			<li><a href="https://www.apexacademiccentre.co.za/">Home</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropbtn">Tutoring <i class="fas fa-chevron-down"></i></a>
+				<div class="dropdown-content">
+					<a href="https://www.apexacademiccentre.co.za/online-tutoring/">Online Tutoring</a>
+					<a href="https://www.apexacademiccentre.co.za/in-person-tutoring/">In Person Tutoring</a>
+					<a href="https://www.apexacademiccentre.co.za/matric-rewrite-2025/">Matric Re-Write</a>
+					<a href="https://www.apexacademiccentre.co.za/special-needs-tutoring/">Special Need Tutoring</a>
+					<a href="https://www.apexacademiccentre.co.za/cambridge-tutoring/">Cambridge Tutoring</a>
+					<a href="https://www.apexacademiccentre.co.za/university-college-tutors/">University/ College
+						Tutors</a>
+					<a href="https://www.apexacademiccentre.co.za/pearson-edexcel-tutoring/">Person Edexcel Tutoring</a>
+				</div>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropbtn">Online Classes <i class="fas fa-chevron-down"></i></a>
+				<div class="dropdown-content">
+					<a href="https://www.apexacademiccentre.co.za/mathematics-online-class/">Mathematics Online Class</a>
+					<a href="https://www.apexacademiccentre.co.za/matric-rewrite-2025/">Matric Rewrite 2025</a>
+				</div>
+			</li>
+			<li><a href="https://www.apexacademiccentre.co.za/homeschooling-support/">Homeschooling</a></li>
+			<li><a href="https://www.apexacademiccentre.co.za/resources/">Resources</a></li>
+			<li><a href="https://www.apexacademiccentre.co.za/contact-us/">Contact</a></li>
+
+		</ul>
+	</nav>
+
+	<div class="form-container">
+		<div id="personalInfo" class="form-section">
+			<form id="contact-form">
+				<h1>Personal Information</h1>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="firstName">First Name <span class="required">*</span></label>
+						<input type="text" id="firstName" name="firstName" placeholder="First name" required>
+						<div id="name-error" class="error"></div>
+					</div>
+					<div class="form-group">
+						<label for="lastName">Last Name <span class="required">*</span></label>
+						<input type="text" id="lastName" name="lastName" placeholder="Last name" required>
+						<div id="surname-error" class="error"></div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="email">Email <span class="required">*</span></label>
+						<input type="email" id="email" name="email" placeholder="Email" required>
+						<div id="email-error" class="error"></div>
+					</div>
+					<div class="form-group">
+						<label for="mobile">Mobile Number <span class="required">*</span></label>
+						<input type="tel" id="mobile" name="mobile" placeholder="Mobile number" required>
+						<div id="mobile-error" class="error"></div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="idPassport">ID/Passport <span class="required">*</span></label>
+						<input type="text" id="idPassport" name="idPassport" placeholder="ID/Passport" required>
+						<div id="idPassport-error" class="error"></div>
+					</div>
+					<div class="form-group">
+						<label for="gender">Gender <span class="required">*</span></label>
+						<select id="gender" name="gender" required>
+							<option value="">Select</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+							<option value="other">Other</option>
+						</select>
+						<div id="gender-error" class="error"></div>
+					</div>
+				</div>
+				<button type="button" onclick="validateForm1()">Next</button>
+			</form>
+		</div>
+
+		<div id="courseInfo" class="form-section hidden">
+			<form id="additional-form">
+				<h1>Course Information</h1>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="province">Province <span class="required">*</span></label>
+						<select id="province" name="province" required>
+							<option value="">Select</option>
+							<option value="easternCape">Eastern Cape</option>
+							<option value="freeState">Free State</option>
+							<option value="gauteng">Gauteng</option>
+							<option value="kwazuluNatal">KwaZulu-Natal</option>
+							<option value="limpopo">Limpopo</option>
+							<option value="mpumalanga">Mpumalanga</option>
+							<option value="northWest">North West</option>
+							<option value="northernCape">Northern Cape</option>
+							<option value="westernCape">Western Cape</option>
+						</select>
+						<div id="province-error" class="error"></div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="writingDate">When are you writing? <span class="required">*</span></label>
+						<select id="writingDate" name="writingDate" required>
+							<option value="">Select</option>
+							<option value="May - June 2025">May-June 2025</option>
+							<option value="November 2025">November 2025</option>
+						</select>
+						<div id="writingDate-error" class="error"></div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="chooseSubjects">Choose subjects <span class="required">*</span></label>
+					<input type="text" id="chooseSubjects" name="chooseSubjects" placeholder="Choose subjects" />
+
+					<div id="subjects-error" class="error"></div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group">
+						<label for="availableDays">Which days are you available? <span class="required">*</span></label>
+						<select id="availableDays" name="availableDays" required>
+							<option value="">Select</option>
+							<option value="monday">Monday</option>
+							<option value="tuesday">Tuesday</option>
+							<option value="wednesday">Wednesday</option>
+							<option value="thursday">Thursday</option>
+							<option value="friday">Friday</option>
+							<option value="saturday">Saturday</option>
+						</select>
+						<div id="availableDays-error" class="error"></div>
+					</div>
+				</div>
+
+				<div style="display: flex; justify-content: space-between;">
+					<button type="button" onclick="showPersonalInfo()">Back</button>
+					<button type="button" onclick="validateForm2()">Next</button>
+				</div>
+			</form>
+		</div>
+
+		<div id="confirmationInfo" class="form-section hidden">
+			<form id="submit-form">
+				<h1>Confirmation</h1>
+				<p>To join our online group classes, please ensure the following:</p>
+				<ul>
+					<li>You have fast, reliable broadband (at least 2 Mbps)</li>
+					<li>You have a phone, tablet, computer, or laptop with a webcam, microphone, and speakers.</li>
+				</ul>
+				<div class="form-group">
+					<label for="message">Your message...</label>
+					<textarea id="message" name="message" placeholder="Your message..." rows="4"></textarea>
+					<div id="message-error" class="error"></div>
+				</div>
+				<div class="form-group terms-label">
+					<label for="terms" style="display: flex-start;">
+						<input type="checkbox" id="terms" name="terms" required>
+						I have read and agree to the <a href="#terms" target="_blank">Terms and Conditions</a> and <a
+							href="#privacy" target="_blank">Privacy Policy</a>
+					</label>
+					<div id="terms-error" class="error"></div>
+				</div>
+
+				<div style="display: flex; justify-content: space-between;">
+					<button type="button" onclick="showCourseInfo()">Back</button>
+					<button type="button" onclick="validateForm3()">Next</button>
+				</div>
+			</form>
+		</div>
+
+		<div class="form_5 hidden" id="formFive">
+			<h2>Payment Packages</h2>
+
+			<div class="div-container" id="schoolPackages">
+				<div class="custom-div">
+					<p>Monthly Package</p>
+					<div class="content">
+						<div class="package-details" onclick="onceOffPackage()">1 Subject</div>
+
+						<form name="PayFastPayNowForm" action="https://payment.payfast.io/eng/process" method="post">
+							<input required type="hidden" name="cmd" value="_paynow">
+							<input required type="hidden" name="receiver" pattern="[0-9]" value="25220959">
+							<input type="hidden" name="return_url"
+								value="https://bookatutorapexacademiccentre.co.za/success_class_registration">
+							<input required type="hidden" name="amount" value="550">
+							<input required type="hidden" name="item_name" maxlength="255" value="Apex payment">
+							<input type="hidden" name="item_description" maxlength="255" value="Apex payment">
+							<table>
+								<tr>
+									<td colspan=2 align=center>
+										<button type="submit">Pay R550 Now</button>
+										<!--<input type="text" src="https://my.payfast.io/images/buttons/PayNow/Primary-Small-PayNow.png" alt="Pay Now" title="Pay Now with Payfast">-->
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="custom-div">
+					<p>Monthly Package</p>
+					<div class="content">
+						<div class="package-details" onclick="basicPackage()">2 Subjects</div>
+						<form name="PayFastPayNowForm" action="https://payment.payfast.io/eng/process" method="post">
+							<input required type="hidden" name="cmd" value="_paynow">
+							<input required type="hidden" name="receiver" pattern="[0-9]" value="25220959">
+							<input type="hidden" name="return_url"
+								value="https://bookatutorapexacademiccentre.co.za/success_class_registration">
+							<input required type="hidden" name="amount" value="1050">
+							<input required type="hidden" name="item_name" maxlength="255" value="Apex payment">
+							<input type="hidden" name="item_description" maxlength="255" value="Apex payment">
+							<table>
+								<tr>
+									<td colspan=2 align=center>
+										<button type="submit">Pay R1050 Now</button>
+										<!--<input type="text" src="https://my.payfast.io/images/buttons/PayNow/Primary-Small-PayNow.png" alt="Pay Now" title="Pay Now with Payfast">-->
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="custom-div">
+					<p>Monthly Package</p>
+					<div class="content">
+						<div class="package-details" onclick="premiumPackage()" id="popular">3 Subjects</div>
+						<form name="PayFastPayNowForm" action="https://payment.payfast.io/eng/process" method="post">
+							<input required type="hidden" name="cmd" value="_paynow">
+							<input required type="hidden" name="receiver" pattern="[0-9]" value="25220959">
+							<input type="hidden" name="return_url"
+								value="https://bookatutorapexacademiccentre.co.za/success_class_registration">
+							<input required type="hidden" name="amount" value="1550">
+							<input required type="hidden" name="item_name" maxlength="255" value="Apex payment">
+							<input type="hidden" name="item_description" maxlength="255" value="Apex payment">
+							<table>
+								<tr>
+									<td colspan=2 align=center>
+										<button type="submit">Pay R1550 Now</button>
+										<!--<input type="text" src="https://my.payfast.io/images/buttons/PayNow/Primary-Small-PayNow.png" alt="Pay Now" title="Pay Now with Payfast">-->
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="custom-div">
+					<p>Monthly Package</p>
+					<div class="content">
+						<div class="package-details" onclick="advanceElite()">4 Subjects</div>
+						<form name="PayFastPayNowForm" action="https://payment.payfast.io/eng/process" method="post">
+							<input required type="hidden" name="cmd" value="_paynow">
+							<input required type="hidden" name="receiver" pattern="[0-9]" value="25220959">
+							<input type="hidden" name="return_url"
+								value="https://bookatutorapexacademiccentre.co.za/success_class_registration">
+							<input required type="hidden" name="amount" value="1950">
+							<input required type="hidden" name="item_name" maxlength="255" value="Apex payment">
+							<input type="hidden" name="item_description" maxlength="255" value="Apex payment">
+							<table>
+								<tr>
+									<td colspan=2 align=center>
+										<button type="submit">Pay R1950 Now</button>
+										<!--<input type="text" src="https://my.payfast.io/images/buttons/PayNow/Primary-Small-PayNow.png" alt="Pay Now" title="Pay Now with Payfast">-->
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="custom-div">
+					<p>Monthly Package</p>
+					<div class="content">
+						<div class="package-details" onclick="advanceElite()">5 Subjects</div>
+						<form name="PayFastPayNowForm" action="https://payment.payfast.io/eng/process" method="post">
+							<input required type="hidden" name="cmd" value="_paynow">
+							<input required type="hidden" name="receiver" pattern="[0-9]" value="25220959">
+							<input type="hidden" name="return_url"
+								value="https://bookatutorapexacademiccentre.co.za/success_class_registration">
+							<input required type="hidden" name="amount" value="2350">
+							<input required type="hidden" name="item_name" maxlength="255" value="Apex payment">
+							<input type="hidden" name="item_description" maxlength="255" value="Apex payment">
+							<table>
+								<tr>
+									<td colspan=2 align=center>
+										<button type="submit">Pay R2350 Now</button>
+										<!--<input type="text" src="https://my.payfast.io/images/buttons/PayNow/Primary-Small-PayNow.png" alt="Pay Now" title="Pay Now with Payfast">-->
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="custom-div">
+					<p>Monthly Package</p>
+					<div class="content">
+						<div class="package-details" onclick="oneOnoneUniversity()">6 Subjects</div>
+						<form name="PayFastPayNowForm" action="https://payment.payfast.io/eng/process" method="post">
+							<input required type="hidden" name="cmd" value="_paynow">
+							<input required type="hidden" name="receiver" pattern="[0-9]" value="25220959">
+							<input type="hidden" name="return_url"
+								value="https://bookatutorapexacademiccentre.co.za/success_class_registration">
+							<input required type="hidden" name="amount" value="2750">
+							<input required type="hidden" name="item_name" maxlength="255" value="Apex payment">
+							<input type="hidden" name="item_description" maxlength="255" value="Apex payment">
+							<table>
+								<tr>
+									<td colspan=2 align=center>
+										<button type="submit">Pay R2750 Now</button>
+										<!--<input type="text" src="https://my.payfast.io/images/buttons/PayNow/Primary-Small-PayNow.png" alt="Pay Now" title="Pay Now with Payfast">-->
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="custom-div">
+					<p>Monthly Package</p>
+					<div class="content">
+						<div class="package-details" onclick="groupUniversity()">7 Subjects</div>
+						<form name="PayFastPayNowForm" action="https://payment.payfast.io/eng/process" method="post">
+							<input required type="hidden" name="cmd" value="_paynow">
+							<input required type="hidden" name="receiver" pattern="[0-9]" value="25220959">
+							<input type="hidden" name="return_url"
+								value="https://bookatutorapexacademiccentre.co.za/success_class_registration">
+							<input required type="hidden" name="amount" value="3300">
+							<input required type="hidden" name="item_name" maxlength="255" value="Apex payment">
+							<input type="hidden" name="item_description" maxlength="255" value="Apex payment">
+							<table>
+								<tr>
+									<td colspan=2 align=center>
+										<button type="submit">Pay R3300 Now</button>
+										<!--<input type="text" src="https://my.payfast.io/images/buttons/PayNow/Primary-Small-PayNow.png" alt="Pay Now" title="Pay Now with Payfast">-->
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+
+
+			</div>
+
+
+			<div class="btns_wrap">
+				<div class="common_btns form_5_btns">
+					<button type="button" class="btn_back" onclick="showConfirmationInfo()">Back</button>
+					<button type="button" class="btn_next" id="consult_btn" onclick="consultantEnquiry()">Speak to
+						consultant</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+
+
+		function validateForm1() {
+
+
+			var isValid = true;
+
+
+			var name = document.getElementById("firstName").value;
+			var surname = document.getElementById("lastName").value;
+			var email = document.getElementById("email").value;
+			var mobile = document.getElementById("mobile").value;
+			var idPassport = document.getElementById("idPassport").value;
+			var gender = document.getElementById("gender").value;
+
+
+			if (!name) {
+				document.getElementById('name-error').textContent = "First name is required.";
+				isValid = false;
+			} else {
+				document.getElementById('name-error').textContent = "";
+			}
+
+
+			if (!surname) {
+				document.getElementById('surname-error').textContent = "Last name is required.";
+				isValid = false;
+			} else {
+				document.getElementById('surname-error').textContent = "";
+			}
+
+			if (!email) {
+				document.getElementById('email-error').textContent = "Email is required.";
+				isValid = false;
+			} else {
+				document.getElementById('email-error').textContent = "";
+			}
+
+			if (!mobile) {
+				document.getElementById('mobile-error').textContent = "Phone number is required.";
+				isValid = false;
+			} else {
+				document.getElementById('mobile-error').textContent = "";
+			}
+
+			if (!idPassport) {
+				document.getElementById('idPassport-error').textContent = "ID/Passport is required.";
+				isValid = false;
+			} else {
+				document.getElementById('idPassport-error').textContent = "";
+			}
+
+
+			if (!gender) {
+				document.getElementById('gender-error').textContent = "Gender is required.";
+				isValid = false;
+			} else {
+				document.getElementById('gender-error').textContent = "";
+			}
+
+			if (isValid) {
+
+				showCourseInfo();
+			}
+
+		}
+
+		function showCourseInfo() {
+			showSection('courseInfo');
+			document.getElementById('subjectsContainer').style.display = 'none';
+		}
+
+
+
+
+		function validateForm2() {
+
+			var isValid = true;
+
+			var province = document.getElementById("province").value;
+			var date = document.getElementById("writingDate").value;
+			var subjects = document.getElementById("chooseSubjects").value;
+			var days = document.getElementById("availableDays").value;
+
+			if (!province) {
+				document.getElementById('province-error').textContent = "Province is required.";
+				isValid = false;
+			} else {
+				document.getElementById('province-error').textContent = "";
+			}
+
+			if (!date) {
+				document.getElementById('writingDate-error').textContent = "Date for writing is required.";
+				isValid = false;
+			} else {
+				document.getElementById('writingDate-error').textContent = "";
+			}
+
+			if (!subjects) {
+				document.getElementById('subjects-error').textContent = "Subject(s) required.";
+				isValid = false;
+			} else {
+				document.getElementById('subjects-error').textContent = "";
+			}
+
+			if (!days) {
+				document.getElementById('availableDays-error').textContent = "Day(s) required.";
+				isValid = false;
+			} else {
+				document.getElementById('availableDays-error').textContent = "";
+			}
+
+
+			if (isValid) {
+
+				showConfirmationInfo();
+			}
+
+
+
+
+		}
+
+
+		function showConfirmationInfo() {
+			showSection('confirmationInfo');
+		}
+
+
+		function validateForm3() {
+
+			var isValid = true;
+
+			var termsCheckbox = document.getElementById('terms');
+			if (termsCheckbox.checked) {
+				document.getElementById('terms-error').textContent = "";
+			} else {
+				document.getElementById('terms-error').textContent = "Required";
+				isValid = false;
+			}
+
+
+			if (isValid) {
+
+				const allData = combineFormData();
+				var status = "pending";
+
+				const dataToSend = {
+					...allData, status: status
+				};
+
+
+				fetch('/online-registration', { // Replace with your actual endpoint URL
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				})
+					.then(response => response.json())
+					.then(result => {
+
+						// Optionally show success message or handle response
+					})
+					.catch(error => {
+						console.error('Error:', error);
+						// Optionally handle error response
+					});
+
+				showPaymentPackages();
+
+			}
+
+
+		}
+
+		function combineFormData() {
+
+			const form1 = document.getElementById('contact-form');
+			const form2 = document.getElementById('additional-form');
+			const form3 = document.getElementById('submit-form');
+
+			const form1Data = new FormData(form1);
+			const form2Data = new FormData(form2);
+			const form3Data = new FormData(form3);
+
+			const data1 = formDataToObject(form1Data);
+			const data2 = formDataToObject(form2Data);
+			const data3 = formDataToObject(form3Data);
+
+			// Combine all data into a single object
+			return {...data1, ...data2, ...data3, };
+		}
+
+		function formDataToObject(formData) {
+			const data = {};
+			formData.forEach((value, key) => {
+				// Handle multiple values for the same key
+				if (data[key]) {
+					// If value is already an array, push the new value
+					if (Array.isArray(data[key])) {
+						data[key].push(value);
+					} else {
+						// Convert existing value to an array and add new value
+						data[key] = [data[key], value];
+					}
+				} else {
+					data[key] = value;
+				}
+			});
+			return data;
+		}
+
+		function consultantEnquiry() {
+
+			alert("Consultant will get in touch  with you shortly. Thank you.");
+
+			const allData = combineFormData();
+			var status = "consult";
+
+			const dataToSend = {
+				...allData, status: status
+			};
+
+
+			fetch('/online-registration', { // Replace with your actual endpoint URL
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(dataToSend)
+			})
+				.then(response => response.json())
+				.then(result => {
+
+					// Optionally show success message or handle response
+				})
+				.catch(error => {
+					console.error('Error:', error);
+					// Optionally handle error response
+				});
+
+			setTimeout(function () {
+				window.location.href = '/';
+			}, 2000);
+
+		}
+
+
+		function showSection(sectionId) {
+
+			const sections = ['personalInfo', 'courseInfo', 'confirmationInfo', 'formFive'];
+			sections.forEach(id => {
+				document.getElementById(id).classList.add('hidden');
+			});
+			document.getElementById(sectionId).classList.remove('hidden');
+		}
+
+
+
+		function showPersonalInfo() {
+			showSection('personalInfo');
+		}
+
+
+
+		function showPaymentPackages() {
+			showSection('formFive');
+		}
+
+		function toggleSubjects() {
+			const subjectContainer = document.getElementById('subjectsContainer');
+			subjectContainer.style.display = subjectContainer.style.display === 'none' || subjectContainer.style.display === '' ? 'flex' : 'none';
+		}
+
+	</script>
+
+</body>
+
+</html>
