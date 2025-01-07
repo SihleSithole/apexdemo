@@ -986,10 +986,14 @@
 
 
  <section class="main-section">
+	
+	<%
+	String byLocation = (String)request.getAttribute("location");
+	%>
 
         <section class="main-class">
             
-			<h2 id="tutorHead" align="center">Apex Academic Centre Tutors</h2>
+			<h2 id="tutorHead" align="center">Tutors in <%= byLocation %></h2>
 			<p id="tutorPar" align="center">These are the Highest Quality Online and In-person Tutors. Get your personalized tutor anywhere in South Africa and Internationally.</p>
             <button id="tutorBtnClass" onclick="openOpenopen()">BOOK TUTOR</button>
             <br>
@@ -1024,9 +1028,7 @@
 
         <%
         List<Tutor> tutors = (List<Tutor>) request.getAttribute("countries");
-			String byLocation = (String)request.getAttribute("location");
 							
-	
         if (tutors != null && !tutors.isEmpty()) {
          %>
     
@@ -1200,7 +1202,7 @@
 						        <%
 						            if (currentPage > 1) { // Ensure we don't go below page 1
 						        %>
-						            <a href="/tutors-in-<%= byLocation %>-<%= currentPage - 1 %>" class="prev"><i class="fas fa-arrow-left"></i></a>
+						            <a href="/tutor-in-<%= byLocation %>-<%= currentPage - 1 %>" class="prev"><i class="fas fa-arrow-left"></i></a>
 						        <%
 						            } else {
 						        %>
@@ -1219,7 +1221,7 @@
 						        <%
 						                } else {
 						        %>
-						                    <a href="/tutors-in-<%= byLocation %>-<%= i %>" class="page-number"><%= i %></a>
+						                    <a href="/tutor-in-<%= byLocation %>-<%= i %>" class="page-number"><%= i %></a>
 						        <%
 						                }
 						            }
@@ -1229,7 +1231,7 @@
 						        <%
 						            if (currentPage < totalPagesLong) { // Ensure we don't go beyond totalPages
 						        %>
-						            <a href="/tutors-in-<%= byLocation %>-<%= currentPage + 1 %>" class="next"><i class="fas fa-arrow-right"></i></a>
+						            <a href="/tutor-in-<%= byLocation %>-<%= currentPage + 1 %>" class="next"><i class="fas fa-arrow-right"></i></a>
 						        <%
 						            } else {
 						        %>
@@ -1244,9 +1246,6 @@
 						        <p>No Tutors found.</p>
 						    </div>
 						<% } %>
-
-
-
 
 					<!--Pgintion-->
 			
