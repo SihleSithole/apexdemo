@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -92,5 +93,20 @@ public class TutorService {
 	    return repo.findAll(pageable);
 	    
 	}
+	
+	/*TUTORS BY LOCATION*/
+	
+
+	 public Page<Tutor> paginateTutors(List<Tutor> tutors, int currentPage) {
+	     int pageSize = 5; // Define the page size
+	     int start = Math.max((currentPage - 1) * pageSize, 0);
+	     int end = Math.min(start + pageSize, tutors.size());
+	     List<Tutor> pageContent = tutors.subList(start, end);
+
+	     // Return a paginated page of tutors
+	     return new PageImpl<>(pageContent, PageRequest.of(currentPage - 1, pageSize), tutors.size());
+	 }
+	
+	
 		
 }

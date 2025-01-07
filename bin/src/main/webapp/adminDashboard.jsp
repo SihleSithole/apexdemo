@@ -3449,10 +3449,7 @@
 													</div>
 												</div>
 
-
-
 												<!--View Booking modal-->
-
 
 													<!-- Tutor Application Modal -->
 													<div id="registeredTutorModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
@@ -3571,6 +3568,7 @@
 																	<input type="hidden" id="rSurname" name="rSurname" class="form-control"/>
 																	<input type="hidden" id="rModules" name="rModules" class="form-control"/>
 																	<input type="hidden" id="rExp" name="rExp" class="form-control"/>
+																	<button  type="submit" class="btn btn-danger" form="myFormform" id="uns" onclick="unsuccessfulApp()">Delete</button>
 																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 																	<button type="submit" class="btn btn-success" id="praise" onclick="sendOut()">Accept</button>
 																
@@ -3580,11 +3578,12 @@
 															</div>
 														</div>
 													</div>
-	
-
-
-
-
+													
+													
+													<form id="myFormform" action="/deleteApplicant" method="post"> 
+													   <input type="hidden" id="emailApplicant" name="emailApplicant" required>
+													</form>		
+								  
 												<!--View Reviews Modal-->
 
 												<div id="reviewModal" class="modal fade" tabindex="-1" role="dialog"
@@ -3616,24 +3615,28 @@
 																				name="rEntryId" />
 																			<input type="hidden" id="rTutorEmail"
 																				name="rTutorEmail" />
-
-
 																		</div>
 
 																	</div>
 
 																</div>
 																<div class="modal-footer">
+																	<button  type="submit" class="btn btn-danger" form="deleteReview" id="dr" onclick="deleteReview()">Delete</button>
 																	<button type="button" class="btn btn-secondary"
 																		data-dismiss="modal">Close</button>
 																	<button class="btn btn-success"
-																		type="submit">Accept</button>
+																		type="submit" id="dc">Accept</button>
 																</div>
 															</form>
 
 														</div>
 													</div>
 												</div>
+												
+												
+												<form id="deleteReview" action="/deleteReview" method="post"> 
+												 <input type="hidden" id="entryReview" name="entryReview" required>
+												</form>	
 
 												<!--View Reviews Modal-->
 
@@ -5593,7 +5596,7 @@
 													editImage.value = image;
 													editImage.placeholder = image;*/
 
-													alert(image);
+													
 
 												});
 
@@ -5660,6 +5663,7 @@
 
 
 														document.getElementById("rEntryId").value = tutor;
+														document.getElementById("entryReview").value = tutor;
 														document.getElementById("rTutorEmail").value = email;
 
 													});
@@ -5843,7 +5847,7 @@
 												document.getElementById("rCountry").value =country;
 												document.getElementById("rDOB").value = dateOnly;
 												document.getElementById("rSurname").value = surname;
-												document.getElementById("rModules").value = "Module1, Module2";
+												document.getElementById("rModules").value = qual;
 												document.getElementById("rExp").value = exp;
 											
 
@@ -6025,10 +6029,33 @@
 													alert("Tutor Successfully Added.");
 													document.getElementById("praise").style.display = 'none';
 						             			
-
 											}
 
+											
+											function unsuccessfulApp(){
 
+													alert("Tutor Application Deleted");
+													document.getElementById("uns").style.display = 'none';
+													document.getElementById("praise").style.display = 'none';
+													
+													var email = document.getElementById("rEmail").value;
+													
+													document.getElementById("emailApplicant").value = email;
+																
+									
+											}
+											
+													
+													function deleteReview(){
+
+														alert("Review Deleted");
+													
+															document.getElementById("dr").style.display = 'none';
+															document.getElementById("dc").style.display = 'none';
+															
+													}
+
+											
 											//edit the country and province 
 											function toggleProvinceVisibility() {
 												var country = document.getElementById("editcountry").value;

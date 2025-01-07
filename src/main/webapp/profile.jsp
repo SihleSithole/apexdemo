@@ -940,7 +940,7 @@
 
 
                 <div class="matric">
-                    <img src="matric.png" alt="Matric">
+                    <img src="apex_child.jpeg" alt="Matric">
 
                 </div>
             </div>
@@ -1039,7 +1039,7 @@
 				    <!--Book Tutor Button and find tutor-->
 				    <div class="button-action">
 				        <button id="book-tutor-button" class="book-tutor-button" onclick="openOpenopen('<%= fullName %>' , '<%= email %>', '<%= curriculum %>', '<%= grades %> ', '<%= subjects %>')">Book <%= name %></button>
-				        <button id="find-tutor-button" class="find-tutor-button" onclick="window.location.href='https://bookatutorapexacademiccentre.co.za/';">Find Me A Tutor</button>
+				        <button id="find-tutor-button" class="find-tutor-button" onclick="window.location.href='https://bookatutorapexacademiccentre.co.za/bookingTutor';">Find Me A Tutor</button>
 				    </div>
 				</div>
 				

@@ -49,7 +49,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class PageController {
+public class PgController {
 	
 
 	@Autowired
@@ -1358,7 +1358,7 @@ public class PageController {
 					
 							return data;
 						
-						}
+					}
 					
 					
 					/*ONLINE CLASSES : REGISTRATION*/
@@ -1997,16 +1997,29 @@ public class PageController {
 							 
 							 /*TUTORS BY LOCATIONS*/
 							 
-							   /*SEARCH ENGINE*/
-							    
 							 @GetMapping("/tutors-in-{location}")
+							
+							 public ModelAndView byLocationList(@PathVariable String location,@RequestParam(value = "page", defaultValue = "1") int currentPage) {
+							
+								 return byLocation(location, currentPage);
+							 }
+							 
+						     @GetMapping("/tutor-in-{location}-{currentPage}")
 							 @ResponseBody
-							 public ModelAndView byLocation(@PathVariable String location, HttpSession session) {
+							 public ModelAndView byLocationListNext(@PathVariable String location, @PathVariable int currentPage ) {
+								 
+						         String[] parts = location.split("-");
+						          
+								 return byLocation(location, currentPage);
+								 
+								 
+							 } 
+							 
+							 @GetMapping("/tutors-in-place")
+							 public ModelAndView byLocation(String location, int currentPage) {
 							     
-								
 							        String search = "l"+location;
 							      
-							       
 							        String[] v = search.split("_");
 							        
 							        System.out.println(v.length);
@@ -2051,9 +2064,7 @@ public class PageController {
 	  
 								     } 
 								       
-							        
-							        System.out.println("Search Input: " + search); // For debugging
-
+						
 							        // Split the search string by commas
 							        String[] searchParams = search.split(",");
 
@@ -2125,19 +2136,126 @@ public class PageController {
 							            })
 							            .collect(Collectors.toList());
 
-							        session.setAttribute("filteredTutors", filteredTutors);
-							        
-							        List<Tutor> tutorsOut = filteredTutors;
-							        
-							        ModelAndView data = new ModelAndView("tutorsByLocation.jsp");
-									data.addObject("tutors" , tutorsOut);
-									data.addObject("location" , location);
-							
-									return data;
+							  
+							        Page<Tutor> page = tutorService.paginateTutors(filteredTutors, currentPage);
+			
+								     long totalPages = page.getTotalPages();
+								     long totalItems = page.getTotalElements();
+								     List<Tutor> countries = page.getContent();
+
+
+								     // Create a ModelAndView object
+								     ModelAndView modelAndView = new ModelAndView();
+
+								     // Add attributes to the model
+								     modelAndView.addObject("currentPage", currentPage);
+								     modelAndView.addObject("totalPages", totalPages);
+								     modelAndView.addObject("totalItems", totalItems);
+								     modelAndView.addObject("countries", countries);
+								     modelAndView.addObject("location", location);
+
+								     modelAndView.setViewName("tutorsByLocation.jsp"); 
+
+								     // Return the ModelAndView object
+								     return modelAndView;
 							        
 							    }
+							 
+							 
+						/*	 @GetMapping("/tutors-in-{location}")
+							 @ResponseBody
+							 public ModelAndView byLocation(@PathVariable String location, HttpSession session, @RequestParam(value = "page", defaultValue = "1") int currentPage) {
+							     String search = "l" + location;
 
-							    
+							     // Split the search string by commas
+							     String[] searchParams = search.split(",");
+							     
+							     // Create an array to hold the filters
+							     String[] filters = new String[4];
+
+							     // Parse the search parameters
+							     for (String param : searchParams) {
+							         if (param.startsWith("l")) {
+							             filters[0] = param.substring(1).trim(); // Set location
+							         } else if (param.startsWith("s")) {
+							             filters[1] = param.substring(1).trim(); // Set subject
+							         } else if (param.startsWith("c")) {
+							             filters[2] = param.substring(1).trim(); // Set curriculum
+							         } else if (param.startsWith("t")) {
+							             filters[3] = param.substring(1).trim(); // Set tutoring option
+							         }
+							     }
+
+							     // Get all tutors
+							     List<Tutor> tutors = tutorService.listAll();
+
+							     // Filter the tutors based on the provided attributes
+							     List<Tutor> filteredTutors = tutors.stream()
+							         .filter(tutor -> {
+							             boolean matches = true;
+
+							             // Check location
+							             if (filters[0] != null) {
+							                 String[] areas = tutor.getArea().split(",\\s*");
+							                 String[] countries = tutor.getCountry().split(",\\s*");
+							                 String address = tutor.getAddress(); // Get the tutor's address
+
+							                 matches = Arrays.stream(areas)
+							                     .anyMatch(area -> area.equalsIgnoreCase(filters[0])) ||
+							                     Arrays.stream(countries)
+							                         .anyMatch(country -> country.equalsIgnoreCase(filters[0])) ||
+							                         address.equalsIgnoreCase(filters[0]); // Check if the address matches the filter
+							             }
+
+							             // Check subjects
+							             if (matches && filters[1] != null) {
+							                 String[] subjects = tutor.getSubjects().split(",\\s*");
+							                 matches = Arrays.stream(subjects)
+							                     .anyMatch(subject -> subject.equalsIgnoreCase(filters[1]));
+							             }
+
+							             // Check syllabus
+							             if (matches && filters[2] != null) {
+							                 String[] syllabuses = tutor.getSyllabus().split(",\\s*");
+							                 matches = Arrays.stream(syllabuses)
+							                     .anyMatch(syllabus -> syllabus.equalsIgnoreCase(filters[2]));
+							             }
+
+							             // Check availability
+							             if (matches && filters[3] != null) {
+							                 String[] availabilities = tutor.getAvailability().split("/");
+
+							                 // Trim each availability to remove leading/trailing whitespace
+							                 availabilities = Arrays.stream(availabilities)
+							                     .map(String::trim) // Trim each element
+							                     .toArray(String[]::new); // Collect back to an array
+
+							                 // Check if any availability matches the filter (case insensitive)
+							                 matches = Arrays.stream(availabilities)
+							                     .anyMatch(availability -> availability.equalsIgnoreCase(filters[3]));
+							             }
+
+							             return matches;
+							         })
+							         .collect(Collectors.toList());
+
+							     // Paginate the filtered list
+							     Page<Tutor> tutorPage = tutorService.paginateTutors(filteredTutors, currentPage);
+
+							     session.setAttribute("filteredTutors", tutorPage.getContent());
+							     
+							     // Create a ModelAndView object and set attributes
+							     ModelAndView modelAndView = new ModelAndView("tutorsByLocation.jsp");
+							     modelAndView.addObject("tutors", tutorPage.getContent());
+							     modelAndView.addObject("location", location);
+							     modelAndView.addObject("currentPage", currentPage);
+							     modelAndView.addObject("totalPages", tutorPage.getTotalPages());
+							     modelAndView.addObject("totalItems", tutorPage.getTotalElements());
+
+							     return modelAndView;
+							 }*/
+
+
 
 							 /*TUTORS BY SUBJECTS*/
 							 
@@ -2447,6 +2565,9 @@ public class PageController {
 									
 						
 									return data;
+									
+									
+									
 							        
 							    }
 							 

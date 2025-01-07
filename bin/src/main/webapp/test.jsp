@@ -1024,7 +1024,6 @@
 
         <%
         List<Tutor> tutors = (List<Tutor>) request.getAttribute("countries");
-			String byLocation = (String)request.getAttribute("location");
 							
 	
         if (tutors != null && !tutors.isEmpty()) {
@@ -1172,83 +1171,85 @@
 			<br/>
 			
 			<!--Pagination-->
+			
 
-					<% 
-						    Integer currentPage = (Integer) request.getAttribute("currentPage");
-						    Long totalPages = (Long) request.getAttribute("totalPages");
-						    Long totalItems = (Long) request.getAttribute("totalItems");
+			<% 
+			    Integer currentPage = (Integer) request.getAttribute("currentPage");
+			    Long totalPages = (Long) request.getAttribute("totalPages");
+			    Long totalItems = (Long) request.getAttribute("totalItems");
 
-						    // Convert Long to int for pagination calculations if necessary
-						    long totalPagesLong = totalPages != null ? totalPages : 0;
-						    long totalItemsLong = totalItems != null ? totalItems : 0;
+			    // Convert Long to int for pagination calculations if necessary
+			    long totalPagesLong = totalPages != null ? totalPages : 0;
+			    long totalItemsLong = totalItems != null ? totalItems : 0;
 
-						    long pageStart = Math.max(currentPage - 2, 1); // Ensure we don't go below 1
-						    long pageEnd = Math.min(currentPage + 3, totalPagesLong); // Ensure we don't go beyond totalPages
+			    long pageStart = Math.max(currentPage - 2, 1); // Ensure we don't go below 1
+			    long pageEnd = Math.min(currentPage + 3, totalPagesLong); // Ensure we don't go beyond totalPages
 
-						    // Adjust page range if there are fewer than 6 pages available
-						    if (totalPagesLong <= 6) {
-						        pageStart = 1;
-						        pageEnd = totalPagesLong;
-						    }
-						%>
+			    // Adjust page range if there are fewer than 6 pages available
+			    if (totalPagesLong <= 6) {
+			        pageStart = 1;
+			        pageEnd = totalPagesLong;
+			    }
+			%>
 
-						<% if (totalItemsLong > 0) { %>
+			<% if (totalItemsLong > 0) { %>
 
-						    <!-- Pagination Links -->
-						    <div class="paginat">
-						        <%-- Previous Page Button --%>
-						        <%
-						            if (currentPage > 1) { // Ensure we don't go below page 1
-						        %>
-						            <a href="/tutors-<%= byLocation %>-<%= currentPage - 1 %>" class="prev"><i class="fas fa-arrow-left"></i></a>
-						        <%
-						            } else {
-						        %>
-						            <span class="prev disabled" style="display:none;"><i class="fas fa-arrow-left"></i></span>
-						        <%
-						            }
-						        %>
+			    <!-- Pagination Links -->
+			    <div class="paginat">
+			        <%-- Previous Page Button --%>
+			        <%
+			            if (currentPage > 1) { // Ensure we don't go below page 1
+			        %>
+			            <a href="/tutors-<%= currentPage - 1 %>" class="prev"><i class="fas fa-arrow-left"></i></a>
+			        <%
+			            } else {
+			        %>
+			            <span class="prev disabled" style="display:none;"><i class="fas fa-arrow-left"></i></span>
+			        <%
+			            }
+			        %>
 
-						        <%-- Page Number Links --%>
-						        <%
-						            // Loop through the page range
-						            for (long i = pageStart; i <= pageEnd; i++) {
-						                if (i == currentPage) {
-						        %>
-						                    <span class="page-number current"><%= i %></span>
-						        <%
-						                } else {
-						        %>
-						                    <a href="/tutors-<%= byLocation %>-<%= i %>" class="page-number"><%= i %></a>
-						        <%
-						                }
-						            }
-						        %>
+			        <%-- Page Number Links --%>
+			        <%
+			            // Loop through the page range
+			            for (long i = pageStart; i <= pageEnd; i++) {
+			                if (i == currentPage) {
+			        %>
+			                    <span class="page-number current"><%= i %></span>
+			        <%
+			                } else {
+			        %>
+			                    <a href="/tutors-<%= i %>" class="page-number"><%= i %></a>
+			        <%
+			                }
+			            }
+			        %>
 
-						        <%-- Next Page Button --%>
-						        <%
-						            if (currentPage < totalPagesLong) { // Ensure we don't go beyond totalPages
-						        %>
-						            <a href="/tutors-<%= byLocation %>-<%= currentPage + 1 %>" class="next"><i class="fas fa-arrow-right"></i></a>
-						        <%
-						            } else {
-						        %>
-						            <span class="next disabled" style="display:none;">Next</span>
-						        <%
-						            }
-						        %>
-						    </div>
+			        <%-- Next Page Button --%>
+			        <%
+			            if (currentPage < totalPagesLong) { // Ensure we don't go beyond totalPages
+			        %>
+			            <a href="/tutors-<%= currentPage + 1 %>" class="next"><i class="fas fa-arrow-right"></i></a>
+			        <%
+			            } else {
+			        %>
+			            <span class="next disabled" style="display:none;">Next</span>
+			        <%
+			            }
+			        %>
+			    </div>
 
-						<% } else { %>
-						    <div>
-						        <p>No Tutors found.</p>
-						    </div>
-						<% } %>
-
-
+			<% } else { %>
+			    <div>
+			        <p>No Tutors found.</p>
+			    </div>
+			<% } %>
 
 
-					<!--Pgintion-->
+			
+			
+			<!--Pgintion-->
+			
 			
         </div>
 		
