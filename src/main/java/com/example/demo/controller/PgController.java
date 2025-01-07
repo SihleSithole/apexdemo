@@ -2008,8 +2008,6 @@ public class PgController {
 							 @ResponseBody
 							 public ModelAndView byLocationListNext(@PathVariable String location, @PathVariable int currentPage ) {
 								 
-						         String[] parts = location.split("-");
-						          
 								 return byLocation(location, currentPage);
 								 
 								 

@@ -1200,7 +1200,7 @@
 						        <%
 						            if (currentPage > 1) { // Ensure we don't go below page 1
 						        %>
-						            <a href="/tutors-<%= byLocation %>-<%= currentPage - 1 %>" class="prev"><i class="fas fa-arrow-left"></i></a>
+						            <a href="/tutors-in-<%= byLocation %>-<%= currentPage - 1 %>" class="prev"><i class="fas fa-arrow-left"></i></a>
 						        <%
 						            } else {
 						        %>
@@ -1219,7 +1219,7 @@
 						        <%
 						                } else {
 						        %>
-						                    <a href="/tutors-<%= byLocation %>-<%= i %>" class="page-number"><%= i %></a>
+						                    <a href="/tutors-in-<%= byLocation %>-<%= i %>" class="page-number"><%= i %></a>
 						        <%
 						                }
 						            }
@@ -1229,7 +1229,7 @@
 						        <%
 						            if (currentPage < totalPagesLong) { // Ensure we don't go beyond totalPages
 						        %>
-						            <a href="/tutors-<%= byLocation %>-<%= currentPage + 1 %>" class="next"><i class="fas fa-arrow-right"></i></a>
+						            <a href="/tutors-in-<%= byLocation %>-<%= currentPage + 1 %>" class="next"><i class="fas fa-arrow-right"></i></a>
 						        <%
 						            } else {
 						        %>
