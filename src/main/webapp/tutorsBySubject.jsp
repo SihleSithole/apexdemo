@@ -4,17 +4,20 @@
 <%@ page import="com.example.demo.model.Tutor" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Base64" %>
-<html lang="en"> <!--1024 834 768-->
+<html lang="en"> <!--1024 834 768-->  
  <head>
-    <title>Expert Online and In-person Tutors in ${location} | Apex Academic Centre</title>
-    <meta name="description" content="Find expert tutors in ${location} for online and in-person lessons. Get personalized academic support with Apex Academic Centre's top tutors.">
+    <title>Book a Tutor | Expert Online and In-person Tutors | Apex Academic Centre</title>
+    <meta name="description" content="Get personalized tutoring with Apex Academic Centre's expert online and in-person tutors. Book your tutor today!">
     
     <!-- SEO Image -->
     <link rel="icon" href="seo_logo.jpeg" sizes="50x50" type="image/x-icon">
 
+    <!--Google console-->
+    <meta name="google-site-verification" content="ATCSIq8W4vtSGUZULJicjWYD6j6kdAYmCwpGtxPcUVM" />
+
  <!-- Open Graph Protocol (Facebook, LinkedIn) -->
-<meta property="og:title" content="Expert Online and In-person Tutors in ${location} | Apex Academic Centre">
-<meta property="og:description" content="Find expert tutors in ${location} for online and in-person lessons. Get personalized academic support with Apex Academic Centre's top tutors.">
+<meta property="og:title" content="Book a Tutor | Expert Online and In-person Tutors | Apex Academic Centre">
+<meta property="og:description" content="Get personalized tutoring with Apex Academic Centre's expert online and in-person tutors. Book your tutor today!">
 <meta property="og:image" content="https://bookatutorapexacademiccentre.co.za/seo.jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -23,18 +26,22 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Expert Online and In-person Tutors in ${location} | Apex Academic Centre">
-<meta name="twitter:description" content="Find expert tutors in ${location} for online and in-person lessons. Get personalized academic support with Apex Academic Centre's top tutors.">
+<meta name="twitter:title" content="Book a Tutor | Expert Online and In-person Tutors | Apex Academic Centre">
+<meta name="twitter:description" content="Get personalized tutoring with Apex Academic Centre's expert online and in-person tutors. Book your tutor today!">
 <meta name="twitter:image" content="https://bookatutorapexacademiccentre.co.za/seo.jpeg">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+   
+    <!--<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
     <link href="assets/css/apex.css" rel="stylesheet">
     <link href="bookingRep.css" rel="stylesheet">
     <style>
+
+
         .checkbox-container{
             display: inline-flex;
         }   
@@ -272,18 +279,16 @@
             text-decoration: none; /* Remove underline */
         }
 
-
             /*SEARCH ENGINE*/
 
 
             /*The footer*/
 
             body{
-	
+                
                 background-color: #f6fffa;  
             }
 
-           
             footer {
                 background-color: #001549; 
                 color: white; 
@@ -393,7 +398,7 @@
             border: 1px solid #ccc; 
             border-radius: 8px; 
             background-color: #00a550; 
-            margin: -150px 80px 20px 130px; 
+           margin: -150px 80px 20px 130px; 
             width: 80%; 
             color: white; 
             position: relative; 
@@ -863,18 +868,75 @@
 
 
     }
+	
+	/* Pagination container */
+	.paginat {
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    margin: 20px 0;
+	}
+
+	/* Style for Previous/Next buttons */
+	.paginat .prev, .paginat .next {
+	   	background-color: #00a550;
+	    color: #fff;
+	    padding: 8px 16px;
+	    border-radius: 4px;
+	    text-decoration: none;
+	    margin: 0 10px;
+	}
+
+	.paginat .prev.disabled, .paginat .next.disabled {
+		background-color: #00a550;
+	    color: #777;
+	    cursor: not-allowed;
+	}
+
+	.paginat .prev:hover, .paginat .next:hover {
+	   background-color: #00a550;
+	}
+
+	/* Page Number Link Styles */
+	.paginat .page-number {
+	    display: inline-block;
+	    background-color: #f0f0f0;
+	    color: #333;
+	    border-radius: 50%;
+	    width: 30px;
+	    height: 30px;
+	    text-align: center;
+	    line-height: 30px;
+	    margin: 0 5px;
+	    text-decoration: none;
+	    font-size: 16px;
+	    transition: background-color 0.3s;
+	}
+
+	/* Current Page Number Styling */
+	.paginat .page-number.current {
+	 background-color: #00a550;
+	    color: white;
+	}
+
+	/* Hover Effect for Page Numbers */
+	.paginat .page-number:hover {
+	background-color: #00a550;
+	    color: white;
+	}
 
 
-
-    /*end footer*/
-       
+    
     </style>
 
  </head>
     <body>
+		
+
 
         <nav class="navbar">
-            <img src="apex.png" alt="Logo" class="logo" id="logo_image">
+			
+            <img src="apex.png" alt="Logo" loading="lazy" class="logo" id="logo_image">
             <button class="navbar-toggle" id="navbar-toggle">
                 <i class="fas fa-bars"></i> <!-- Hamburger icon -->
             </button>
@@ -919,19 +981,20 @@
                 </li>
             </ul>
         </nav>
-
-        <%
-        
-           String byLocation = (String)request.getAttribute("location");
-        %>
         
 
-        <section class="main-section">
+
+
+ <section class="main-section">
+	
+	<%
+	String byLocation = (String)request.getAttribute("location");
+	%>
 
         <section class="main-class">
             
 			<h2 id="tutorHead" align="center"><%= byLocation %> Tutors</h2>
-            <p id="tutorPar" align="center">These are the Highest Quality Online and In-person Tutors. Get your personalized tutor anywhere in South Africa and Internationally</p>
+			<p id="tutorPar" align="center">These are the Highest Quality Online and In-person Tutors. Get your personalized tutor anywhere in South Africa and Internationally.</p>
             <button id="tutorBtnClass" onclick="openOpenopen()">BOOK TUTOR</button>
             <br>
           		
@@ -942,6 +1005,9 @@
             <div class="welcome-hero-form">
                 <div class="single-welcome-hero-form">
                     <input type="text" placeholder="Location / Area" id="eng-location" class="engine-input" />
+                </div>
+                <div class="single-welcome-hero-form">
+                    <input type="text" placeholder="Subject" id="eng-subject" class="engine-input"/>
                 </div>
                 <div class="single-welcome-hero-form">
                     <input type="text" placeholder="Curriculum" id="eng-curriculum" class="engine-input"/>
@@ -961,28 +1027,24 @@
         <!--SEARCH ENGINE-->
 
         <%
-        List<Tutor> tutors = (List<Tutor>) request.getAttribute("tutors");
+        List<Tutor> tutors = (List<Tutor>) request.getAttribute("subjects");
+							
         if (tutors != null && !tutors.isEmpty()) {
-    %>
+         %>
     
         <!-- Container for scrolling tutors -->
         <div class="tutor-wrapper">
             <!-- Container for images -->
             <div class="image-wrapper">
-                <img src="apex_child.jpeg" alt="Image 1" class="image image1">
-             
-                <% if (tutors.size() > 1) { %>
-                    <img src="In-person Tutor & Student Apex Academic Centre.jpg" alt="Image 2" class="image image2" id="img2">
-                <% } %>
-
+                <img src="apex_child.jpeg" loading="lazy" alt="Image 1" class="image image1">
+                <img src="In-person Tutor & Student Apex Academic Centre.jpg" loading="lazy" alt="Image 2" class="image image2">  
+            </div>
+            <div class="whatsapp-wrapper">
+                  <a href="https://wa.me/27680351845?text=Hi%20*Apex%20Academic%20Centre*!%20I%20need%20more%20info%20about%20Apex%20Academic%20Centre%20https://www.apexacademiccentre.co.za" target="_blank" class="whatsapp-icon">
+                    <i class="fab fa-whatsapp" style="font-size: 40px; color: #fff; "></i> 
+                   </a>
             </div>
 
-            <div class="whatsapp-wrapper">
-                <a href="https://wa.me/27680351845?text=Hi%20*Apex%20Academic%20Centre*!%20I%20need%20more%20info%20about%20Apex%20Academic%20Centre%20https://www.apexacademiccentre.co.za" target="_blank" class="whatsapp-icon">
-                  <i class="fab fa-whatsapp" style="font-size: 40px; color: #fff; "></i> 
-                 </a>
-          </div>
-    
             <!-- Container for tutor profiles -->
             <div class="tutor-container">
                 <% 
@@ -1008,7 +1070,7 @@
                     <div class="top">
                         <div class="row">
                         <div class="profile">
-                            <img src="data:image/png;base64,<%= iSmage %>" alt="Member Image">
+                            <img src="data:image/png;base64,<%= iSmage %>" loading="lazy" alt="Member Image">
                         </div>
                         <div class="details">
                             <p>
@@ -1046,8 +1108,8 @@
                                <br>
                             </div>
                             <div class="ratings">
-                                <i class="fas fa-star" id="rate-icon"></i>
-                                <span id="rate"><%= ratings %> Ratings</span>
+                               <i class="fas fa-star" id="rate-icon"></i>
+                               <span id="rate"><%= ratings %> Ratings</span>
                             </div>
                             <div class="feedback-item">
                                 <i class="fas fa-check-circle" id="back-icon"></i>
@@ -1106,18 +1168,103 @@
                 <% 
                     } 
                 %>
+				
+								
             </div>
+			<br/>
+			
+			<!--Pagination-->
+
+					<% 
+						    Integer currentPage = (Integer) request.getAttribute("currentPage");
+						    Long totalPages = (Long) request.getAttribute("totalPages");
+						    Long totalItems = (Long) request.getAttribute("totalItems");
+
+						    // Convert Long to int for pagination calculations if necessary
+						    long totalPagesLong = totalPages != null ? totalPages : 0;
+						    long totalItemsLong = totalItems != null ? totalItems : 0;
+
+						    long pageStart = Math.max(currentPage - 2, 1); // Ensure we don't go below 1
+						    long pageEnd = Math.min(currentPage + 3, totalPagesLong); // Ensure we don't go beyond totalPages
+
+						    // Adjust page range if there are fewer than 6 pages available
+						    if (totalPagesLong <= 6) {
+						        pageStart = 1;
+						        pageEnd = totalPagesLong;
+						    }
+						%>
+
+						<% if (totalItemsLong > 0) { %>
+
+						    <!-- Pagination Links -->
+						    <div class="paginat">
+						        <%-- Previous Page Button --%>
+						        <%
+						            if (currentPage > 1) { // Ensure we don't go below page 1
+						        %>     
+						            <a href="/<%= byLocation %>-<%= currentPage - 1 %>-tutor" class="prev"><i class="fas fa-arrow-left"></i></a>
+						        <%
+						            } else {
+						        %>
+						            <span class="prev disabled" style="display:none;"><i class="fas fa-arrow-left"></i></span>
+						        <%
+						            }
+						        %>
+
+						        <%-- Page Number Links --%>
+						        <%
+						            // Loop through the page range
+						            for (long i = pageStart; i <= pageEnd; i++) {
+						                if (i == currentPage) {
+						        %>
+						                    <span class="page-number current"><%= i %></span>
+						        <%
+						                } else {
+						        %>
+						                    <a href="/<%= byLocation %>-<%= i %>-tutor" class="page-number"><%= i %></a>
+						        <%
+						                }
+						            }
+						        %>
+
+						        <%-- Next Page Button --%>
+						        <%
+						            if (currentPage < totalPagesLong) { // Ensure we don't go beyond totalPages
+						        %>
+						            <a href="/<%= byLocation %>-<%= currentPage + 1 %>-tutor" class="next"><i class="fas fa-arrow-right"></i></a>
+						        <%
+						            } else {
+						        %>
+						            <span class="next disabled" style="display:none;">Next</span>
+						        <%
+						            }
+						        %>
+						    </div>
+
+						<% } else { %>
+						    <div>
+						        <p>No Tutors found.</p>
+						    </div>
+						<% } %>
+
+					<!--Pgintion-->
+			
         </div>
-    
+		
+
     <%
         } else { 
     %>
-        <div style="margin-bottom: 200px;">
-            <p style="font-size: 24px; text-align: center">No Tutor(s) found.</p>
+        <div>
+            <p>No Tutors found.</p>
         </div>
     <%
         } 
     %>
+
+	
+	
+	
     
    <!--BOOKING FORM--> 
 	
@@ -1702,7 +1849,7 @@
                                 <div class="terms-row">
                                     <input type="checkbox" id="terms" name="terms" required>
                                     <label for="terms">
-                                        I have read and agree to the <a href="https://www.apexacademiccentre.co.za/terms-and-conditions/" target="_blank" id="termsCondition">Terms and Conditions</a> and <a href="https://www.apexacademiccentre.co.za/wp-content/uploads/2024/01/Privacy-Policy-for-Apex-Academic-Centre.pdf" target="_blank" id="termsCondition">Privacy Policy</a>.<span class="required">*</span>
+                                        I have read and agree to the <a href="https://www.apexacademiccentre.co.za/terms-and-conditions/" target="_blank" id="termsCondition">Terms and Conditions</a> and <a href="https://www.apexacademiccentre.co.za/privacy-policy/" target="_blank" id="termsCondition">Privacy Policy</a>.<span class="required">*</span>
                                     </label>
                                     <div id="terms-error" class="error"></div>
                                 </div>
@@ -1840,206 +1987,208 @@
     </form>
   </div><br>
 
+<footer id="footer-footer" >
 
-<footer id="footer-footer">
+        <div class="footer-row">
+            <!-- First Column -->
+            <div class="links">
+                <div class="column" style="padding-left: 14px;">
+                   <img src="logoo.png" loading="lazy" alt="Logo" class="logo-style" id="logo_image"><br>
+                    <p class="aboutApex">Apex Academic Centre delivers personalized, high-quality tutoring across the globe. Our experienced tutors empower students to excel in IEB, CAPS, Cambridge, and Pearson Edexcel curricula through flexible online and in-person learning solutions.</p>
+                    <br>
+                    <h3 class="footer-heading">  Contact Info</h3><br>
+                    <p><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;364 Jan Smuts Ave, Craighall, Randburg</p><br>
+                    <p><i class="fas fa-phone"></i>&nbsp;&nbsp;+27 68 035 1845</p><br>
+                    <p><i class="fas fa-phone"></i>&nbsp;&nbsp;+27 11 354 0198</p><br>
+                    <p class="myEmail"><i class="fas fa-envelope"></i> <a href="mailto:info@apexacademiccentre.co.za">&nbsp;&nbsp;info@apexacademiccentre.co.za</a></p>
+                    <br>
+                    <p class="icons">
+                        <a href="https://api.whatsapp.com/send/?phone=27680351845&text&type=phone_number&app_absent=0" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/Apex.family6/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/i/flow/login?redirect_after_login=%2Facademic_centre" target="_blank"><i class="fab fa-x"></i></a>
+                        <a href="https://www.instagram.com/apex_academiccentre/#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://apexacademics.tumblr.com/" target="_blank"><i class="fab fa-tumblr"></i></a>
+                    </p><br>
+                </div>
+
+                 <!-- Second Column -->
+                <div class="column">
+                    <h3 class="footer-heading" style="padding-left: 14px;">Quick Links</h3>
+                    <a href="https://www.apexacademiccentre.co.za/" class="link">≫ Home</a>
+                    <a href="https://www.apexacademiccentre.co.za/online-tutoring/" class="link">≫ Online Tutoring</a>
+                    <a href="https://www.apexacademiccentre.co.za/in-person-tutoring/" class="link">≫ In-person Tutoring</a>
+                    <a href="https://www.apexacademiccentre.co.za/university-college-tutors/" class="link">≫ University and College Tutoring</a>
+                    <a href="https://www.apexacademiccentre.co.za/matric-rewrite-2025/" class="link">≫ Matric Rewrite</a>
+                    <a href="https://bookatutorapexacademiccentre.co.za/become-tutor" class="link">≫ Become a Tutor</a>
+                    <a href="https://www.apexacademiccentre.co.za/cambridge-tutoring/" class="link">≫ Cambridge</a>
+                    <a href="https://www.apexacademiccentre.co.za/pearson-edexcel-tutoring/" class="link">≫ Pearson Edexcel</a>
+                    <a href="https://www.apexacademiccentre.co.za/homeschooling-support/" class="link">≫ Homeschooling Support</a>
+                    <a href="https://www.apexacademiccentre.co.za/special-needs-tutoring/" class="link">≫ Special Needs Tutoring</a>
+                    <a href="https://www.apexacademiccentre.co.za/about-us/" class="link">≫ About Us</a>
+                    <a href="https://www.apexacademiccentre.co.za/blog/" class="link">≫ Blogs</a>
+                    <a href="https://www.apexacademiccentre.co.za/job-openings/" class="link">≫ Career</a>
+                    <a href="https://www.apexacademiccentre.co.za/faq/" class="link">≫ FAQs</a><br>
+                </div>
+
+
+                <div class="column">
+                    <h3 class="footer-heading" style="padding-left: 14px;">Curriculum</h3><br>
+                    <a href="https://bookatutorapexacademiccentre.co.za/syllabus-CAPS" class="link">≫ NSC (CAPS)</a>
+                    <a href="https://bookatutorapexacademiccentre.co.za/syllabus-IB" class="link">≫ IB</a>
+                    <a href="https://bookatutorapexacademiccentre.co.za/syllabus-IEB" class="link">≫ IEB</a>
+                    <a href="https://www.apexacademiccentre.co.za/igcse-level-tutoring/" class="link">≫ IGCSE</a>
+                    <a href="https://www.apexacademiccentre.co.za/olevel-tutoring/" class="link">≫ O’ Level</a>
+                    <a href="https://www.apexacademiccentre.co.za/as-level-tutoring/" class="link">≫ AS Level</a>
+                    <a href="https://www.apexacademiccentre.co.za/a-level-tutoring/" class="link">≫ A Level</a><br>
+                    <h3 class="footer-heading" style="padding-left: 14px;"> Online Classes</h3><br>
+                    <a href="https://bookatutorapexacademiccentre.co.za/maths-class" class="link">≫ Mathematics Online Class</a>
+                    <a href="https://bookatutorapexacademiccentre.co.za/matric-rewrite" class="link">≫ Matric Rewrite Online Class</a>
+                    <a href="https://www.apexacademiccentre.co.za/stem-excellence-program/" class="link">≫ STEM Classes</a>
+                    <a href="https://www.apexacademiccentre.co.za/subjects-offered/" class="link">≫ Subjects Offered</a>
+                </div>
+
+
+                <!-- Fourth Column -->
+                <div class="column">
+                    <h3 class="footer-heading" style="padding-left: 14px;">Resources</h3>
+                    <a href="#" class="link">≫ DBE (CAPS)</a>
+                    <a href="#" class="link">≫ Study Guides (Grade 10 to 12)</a>
+                    <a href="#" class="link">≫ Grade 12 NSC Past Papers</a>
+                    <a href="#" class="link">≫ SBA Examples</a>
+                    <a href="#" class="link">≫ IEB Resources</a>
+                    <a href="#" class="link">≫ IEB Past Papers</a>
+                    <a href="#" class="link">≫ ISC Past Papers (IEB)</a>
+                    <a href="#" class="link">≫ Grade 12 IEB Past Papers</a>
+                    <a href="#" class="link">≫ IGCSE Past Papers (Cambridge)</a>
+                    <a href="#" class="link">≫ AS and A Level Past Papers (Cambridge)</a>
+                    <a href="#" class="link">≫ IGCSE Past Papers (Pearson)</a>
+                    <a href="#" class="link">≫ AS Past Papers (Pearson)</a>
+                    <a href="#" class="link">≫ Worksheets</a>
+                </div>
+
+            </div>
+
+        </div>
+    
+    
 
     <div class="footer-row">
-        <!-- First Column -->
+        <h3 class="footer-heading" id="popSub" style="padding-left: 14px;">Popular Subjects</h3>
         <div class="links">
-            <div class="column" style="padding-left: 14px;">
-               <img src="logoo.png" alt="Logo" class="logo-style" id="logo_image"><br>
-                <p class="aboutApex">Apex Academic Centre delivers personalized, high-quality tutoring across the globe. Our experienced tutors empower students to excel in IEB, CAPS, Cambridge, and Pearson Edexcel curricula through flexible online and in-person learning solutions.</p>
-                <br>
-                <h3 class="footer-heading">  Contact Info</h3><br>
-                <p><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;364 Jan Smuts Ave, Craighall, Randburg</p><br>
-                <p><i class="fas fa-phone"></i>&nbsp;&nbsp;+27 68 035 1845</p><br>
-                <p><i class="fas fa-phone"></i>&nbsp;&nbsp;+27 11 354 0198</p><br>
-                <p class="myEmail"><i class="fas fa-envelope"></i> <a href="mailto:info@apexacademiccentre.co.za">&nbsp;&nbsp;info@apexacademiccentre.co.za</a></p>
-                <br>
-                <p class="icons">
-                    <a href="https://api.whatsapp.com/send/?phone=27680351845&text&type=phone_number&app_absent=0" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.facebook.com/Apex.family6/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://x.com/i/flow/login?redirect_after_login=%2Facademic_centre" target="_blank"><i class="fab fa-x"></i></a>
-                    <a href="https://www.instagram.com/apex_academiccentre/#" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://apexacademics.tumblr.com/" target="_blank"><i class="fab fa-tumblr"></i></a>
-                </p><br>
-            </div>
-
-             <!-- Second Column -->
             <div class="column">
-                <h3 class="footer-heading" style="padding-left: 14px;">Quick Links</h3>
-                <a href="https://www.apexacademiccentre.co.za/" class="link">≫ Home</a>
-                <a href="https://www.apexacademiccentre.co.za/online-tutoring/" class="link">≫ Online Tutoring</a>
-                <a href="https://www.apexacademiccentre.co.za/in-person-tutoring/" class="link">≫ In-person Tutoring</a>
-                <a href="https://www.apexacademiccentre.co.za/university-college-tutors/" class="link">≫ University and College Tutoring</a>
-                <a href="https://www.apexacademiccentre.co.za/matric-rewrite-2025/" class="link">≫ Matric Rewrite</a>
-                <a href="https://bookatutorapexacademiccentre.co.za/become-tutor" class="link">≫ Become a Tutor</a>
-                <a href="https://www.apexacademiccentre.co.za/cambridge-tutoring/" class="link">≫ Cambridge</a>
-                <a href="https://www.apexacademiccentre.co.za/pearson-edexcel-tutoring/" class="link">≫ Pearson Edexcel</a>
-                <a href="https://www.apexacademiccentre.co.za/homeschooling-support/" class="link">≫ Homeschooling Support</a>
-                <a href="https://www.apexacademiccentre.co.za/special-needs-tutoring/" class="link">≫ Special Needs Tutoring</a>
-                <a href="https://www.apexacademiccentre.co.za/about-us/" class="link">≫ About Us</a>
-                <a href="https://www.apexacademiccentre.co.za/blog/" class="link">≫ Blogs</a>
-                <a href="https://www.apexacademiccentre.co.za/job-openings/" class="link">≫ Career</a>
-                <a href="https://www.apexacademiccentre.co.za/faq/" class="link">≫ FAQs</a><br>
+               
+                <a href="/Mathematics-tutors" class="link">≫ Mathematics</a>
+                <a href="/Mathematics_Literacy-tutors" class="link">≫ Mathematics Literacy</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Physics-tutors
+                " class="link">≫ Physics</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Physical_Sciences-tutors
+                " class="link">≫ Physical Sciences</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Chemistry-tutors
+                " class="link">≫ Chemistry</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Biology-tutors
+                " class="link">≫ Biology</a>
             </div>
-
-
             <div class="column">
-                <h3 class="footer-heading" style="padding-left: 14px;">Curriculum</h3><br>
-                <a href="https://bookatutorapexacademiccentre.co.za/syllabus-CAPS" class="link">≫ NSC (CAPS)</a>
-                <a href="https://bookatutorapexacademiccentre.co.za/syllabus-IB" class="link">≫ IB</a>
-                <a href="https://bookatutorapexacademiccentre.co.za/syllabus-IEB" class="link">≫ IEB</a>
-                <a href="https://www.apexacademiccentre.co.za/igcse-level-tutoring/" class="link">≫ IGCSE</a>
-                <a href="https://www.apexacademiccentre.co.za/olevel-tutoring/" class="link">≫ O’ Level</a>
-                <a href="https://www.apexacademiccentre.co.za/as-level-tutoring/" class="link">≫ AS Level</a>
-                <a href="https://www.apexacademiccentre.co.za/a-level-tutoring/" class="link">≫ A Level</a><br>
-                <h3 class="footer-heading" style="padding-left: 14px;"> Online Classes</h3><br>
-                <a href="https://bookatutorapexacademiccentre.co.za/maths-class" class="link">≫ Mathematics Online Class</a>
-                <a href="https://bookatutorapexacademiccentre.co.za/matric-rewrite" class="link">≫ Matric Rewrite Online Class</a>
-                <a href="https://www.apexacademiccentre.co.za/stem-excellence-program/" class="link">≫ STEM Classes</a>
-                <a href="https://www.apexacademiccentre.co.za/subjects-offered/" class="link">≫ Subjects Offered</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Life_Sciences-tutors
+                " class="link">≫ Life Sciences</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Natural_Sciences-tutors
+                " class="link">≫ Natural Sciences</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Accounting-tutors
+                " class="link">≫ Accounting</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Business_Studies-tutors
+                " class="link">≫ Business Studies</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Econimics-tutors
+                " class="link">≫ Economics</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Computer_Science-tutors
+                " class="link">≫ Computer Science</a>
             </div>
-
-
-            <!-- Fourth Column -->
             <div class="column">
-                <h3 class="footer-heading" style="padding-left: 14px;">Resources</h3>
-                <a href="#" class="link">≫ DBE (CAPS)</a>
-                <a href="#" class="link">≫ Study Guides (Grade 10 to 12)</a>
-                <a href="#" class="link">≫ Grade 12 NSC Past Papers</a>
-                <a href="#" class="link">≫ SBA Examples</a>
-                <a href="#" class="link">≫ IEB Resources</a>
-                <a href="#" class="link">≫ IEB Past Papers</a>
-                <a href="#" class="link">≫ ISC Past Papers (IEB)</a>
-                <a href="#" class="link">≫ Grade 12 IEB Past Papers</a>
-                <a href="#" class="link">≫ IGCSE Past Papers (Cambridge)</a>
-                <a href="#" class="link">≫ AS and A Level Past Papers (Cambridge)</a>
-                <a href="#" class="link">≫ IGCSE Past Papers (Pearson)</a>
-                <a href="#" class="link">≫ AS Past Papers (Pearson)</a>
-                <a href="#" class="link">≫ Worksheets</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/CAT-tutors
+                " class="link">≫ CAT</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/EMS-tutors
+                " class="link">≫ EMS</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/History-tutors
+                " class="link">≫ History</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Geography-tutors
+                " class="link">≫ Geography</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/English-tutors
+                " class="link">≫ English</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Afrikaans-tutors
+                " class="link">≫ Afrikaans</a>
             </div>
-
-        </div>
-
-    </div>
-
-
-
-<div class="footer-row">
-    <h3 class="footer-heading" id="popSub" style="padding-left: 14px;">Popular Subjects</h3>
-    <div class="links">
-        <div class="column">
-           
-            <a href="/Mathematics-tutors" class="link">≫ Mathematics</a>
-            <a href="/Mathematics_Literacy-tutors" class="link">≫ Mathematics Literacy</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Physics-tutors
-            " class="link">≫ Physics</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Physical_Sciences-tutors
-            " class="link">≫ Physical Sciences</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Chemistry-tutors
-            " class="link">≫ Chemistry</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Biology-tutors
-            " class="link">≫ Biology</a>
-        </div>
-        <div class="column">
-            <a href="https://bookatutorapexacademiccentre.co.za/Life_Sciences-tutors
-            " class="link">≫ Life Sciences</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Natural_Sciences-tutors
-            " class="link">≫ Natural Sciences</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Accounting-tutors
-            " class="link">≫ Accounting</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Business_Studies-tutors
-            " class="link">≫ Business Studies</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Econimics-tutors
-            " class="link">≫ Economics</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Computer_Science-tutors
-            " class="link">≫ Computer Science</a>
-        </div>
-        <div class="column">
-            <a href="https://bookatutorapexacademiccentre.co.za/CAT-tutors
-            " class="link">≫ CAT</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/EMS-tutors
-            " class="link">≫ EMS</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/History-tutors
-            " class="link">≫ History</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Geography-tutors
-            " class="link">≫ Geography</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/English-tutors
-            " class="link">≫ English</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Afrikaans-tutors
-            " class="link">≫ Afrikaans</a>
-        </div>
-        <div class="column">
-            <a href="https://bookatutorapexacademiccentre.co.za/isiZulu-tutors
-            " class="link">≫ IsiZulu</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/German-tutors " class="link">≫ German</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/IT-tutors
-            " class="link">≫ IT</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/Sepedi-tutors
-            " class="link">≫ Sepedi</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/French-tutors
-            " class="link">≫ French</a>
-            <a href="https://bookatutorapexacademiccentre.co.za/isiXhosa-tutors
-            " class="link">≫ IsiXhosa</a>
-            <!-- You can add more subjects here if needed -->
-        </div>
-    </div>
-</div>
-
-
-
-<div class="footer-row last-content-row">
-    <h3 class="footer-heading" id="tutorLog" style="padding-left: 14px;">Tutors by Location</h3>
-    <div class="links">
-        <div class="column">
-            <a href="/tutors-in-Randburg" class="link">≫ Randburg</a>
-            <a href="/tutors-in-Krugersdorp" class="link">≫ Krugersdorp</a>
-            <a href="/tutors-in-Roodepoort" class="link">≫ Roodepoort</a>
-            <a href="/tutors-in-Sandton" class="link">≫ Sandton</a>
-            <a href="/tutors-in-Midrand" class="link">≫ Midrand</a>
-            <a href="/tutors-in-Centurion" class="link">≫ Centurion</a>
-        </div>
-        <div class="column">
-            <a href="/tutors-in-Benoni" class="link">≫ Benoni</a>
-            <a href="/tutors-in-Pretoria" class="link">≫ Pretoria</a>
-            <a href="/tutors-in-Mamelodi" class="link">≫ Mamelodi</a>
-            <a href="/tutors-in-kempton Park" class="link">≫ Kempton Park</a>
-            <a href="/tutors-in-Polokwane" class="link">≫ Polokwane</a>
-            <a href="/tutors-in-Nelspruit" class="link">≫ Nelspruit</a>
-        </div>
-        <div class="column">
-            <a href="/tutors-in-Boksurg" class="link">≫ Boksburg</a>
-            <a href="/tutors-in-Edenvale" class="link">≫ Edenvale</a>
-            <a href="/tutors-in-Springs" class="link">≫ Springs</a>
-            <a href="/tutors-in-Alberton" class="link">≫ Alberton</a>
-            <a href="/tutors-in-Johannesburg" class="link">≫ Johannesburg</a>
-            <a href="/tutors-in-Soweto" class="link">≫ Soweto</a>
-        </div>
-        <div class="column">
-            <a href="/tutors-in-Pietermaritzburg" class="link">≫ Pietermaritzburg</a>
-            <a href="/tutors-in-Durban" class="link">≫ Durban</a>
-            <a href="/tutors-in-Mthatha" class="link">≫ Mthatha</a>
-            <a href="/tutors-in-Cape Town" class="link">≫ Cape Town</a>
-            <a href="/tutors-in-Kimberley" class="link">≫ Kimberley</a>
-            <a href="/tutors-in-Mafikeng" class="link">≫ Mafikeng</a>
-
+            <div class="column">
+                <a href="https://bookatutorapexacademiccentre.co.za/isiZulu-tutors
+                " class="link">≫ IsiZulu</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/German-tutors " class="link">≫ German</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/IT-tutors
+                " class="link">≫ IT</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/Sepedi-tutors
+                " class="link">≫ Sepedi</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/French-tutors
+                " class="link">≫ French</a>
+                <a href="https://bookatutorapexacademiccentre.co.za/isiXhosa-tutors
+                " class="link">≫ IsiXhosa</a>
+                <!-- You can add more subjects here if needed -->
+            </div>
         </div>
     </div>
     
-    
-</div>
 
- <!-- Add the footer-bottom row for copyright and terms -->
- <div class="footer-bottom">
-    <div class="footer-column">
-        <p>&copy; 2024 Apex Academic Centre | Designed by <a href="https://www.nativewebs.co.za/" class="footer-link">NativeWebs</a> All rights reserved.</p>
+
+    <div class="footer-row last-content-row">
+        <h3 class="footer-heading" id="tutorLog" style="padding-left: 14px;">Tutors by Location</h3>
+        <div class="links">
+            <div class="column">
+                <a href="/tutors-in-Randburg" class="link">≫ Randburg</a>
+                <a href="/tutors-in-Krugersdorp" class="link">≫ Krugersdorp</a>
+                <a href="/tutors-in-Roodepoort" class="link">≫ Roodepoort</a>
+                <a href="/tutors-in-Sandton" class="link">≫ Sandton</a>
+                <a href="/tutors-in-Midrand" class="link">≫ Midrand</a>
+                <a href="/tutors-in-Centurion" class="link">≫ Centurion</a>
+            </div>
+            <div class="column">
+                <a href="/tutors-in-Benoni" class="link">≫ Benoni</a>
+                <a href="/tutors-in-Pretoria" class="link">≫ Pretoria</a>
+                <a href="/tutors-in-Mamelodi" class="link">≫ Mamelodi</a>
+                <a href="/tutors-in-kempton Park" class="link">≫ Kempton Park</a>
+                <a href="/tutors-in-Polokwane" class="link">≫ Polokwane</a>
+                <a href="/tutors-in-Nelspruit" class="link">≫ Nelspruit</a>
+            </div>
+            <div class="column">
+                <a href="/tutors-in-Boksurg" class="link">≫ Boksburg</a>
+                <a href="/tutors-in-Edenvale" class="link">≫ Edenvale</a>
+                <a href="/tutors-in-Springs" class="link">≫ Springs</a>
+                <a href="/tutors-in-Alberton" class="link">≫ Alberton</a>
+                <a href="/tutors-in-Johannesburg" class="link">≫ Johannesburg</a>
+                <a href="/tutors-in-Soweto" class="link">≫ Soweto</a>
+            </div>
+            <div class="column">
+                <a href="/tutors-in-Pietermaritzburg" class="link">≫ Pietermaritzburg</a>
+                <a href="/tutors-in-Durban" class="link">≫ Durban</a>
+                <a href="/tutors-in-Mthatha" class="link">≫ Mthatha</a>
+                <a href="/tutors-in-Cape Town" class="link">≫ Cape Town</a>
+                <a href="/tutors-in-Kimberley" class="link">≫ Kimberley</a>
+                <a href="/tutors-in-Mafikeng" class="link">≫ Mafikeng</a>
+
+            </div>
+        </div>
+        
+        
     </div>
-    <div class="footer-column">
-        <a href="https://www.apexacademiccentre.co.za/privacy-policy/" class="footer-link">Privacy Policy</a>.<a href="https://www.apexacademiccentre.co.za/terms-and-conditions/" class="footer-link">Terms & Conditions</a>
+
+     <!-- Add the footer-bottom row for copyright and terms -->
+     <div class="footer-bottom">
+        <div class="footer-column">
+            <p>&copy; 2024 Apex Academic Centre | Designed by<a href="https://www.nativewebs.co.za/" class="footer-link">NativeWebs</a> All rights reserved.</p>
+        </div>
+        <div class="footer-column">
+            <a href="https://www.apexacademiccentre.co.za/privacy-policy/" class="footer-link">Privacy Policy</a>.<a href="https://www.apexacademiccentre.co.za/terms-and-conditions/" class="footer-link">Terms & Conditions</a>
+        </div>
     </div>
-</div>
 </footer>
+
+
+
 
 
 <script>
@@ -3467,15 +3616,12 @@ window.addEventListener('resize', () => {
            /*Subects End Here*/
 
             const button = document.getElementById('tutorBtn');
-
-
             const tutorBtnClass = document.getElementById('tutorBtnClass');
            
-           const directTutors = document.querySelectorAll('.directTutor');
-           const otherOption = document.getElementById('other-option');
+            const directTutors = document.querySelectorAll('.directTutor');
+            const otherOption = document.getElementById('other-option');
 
-           if (event.target === button || event.target === tutorBtnClass) {
-
+            if (event.target === button || event.target === tutorBtnClass) {
                 // The button was clicked
                 directTutors.forEach(tutor => {
                     tutor.textContent = 'BOOK A PERSONALIZED TUTOR';
@@ -4442,7 +4588,7 @@ var yearIn = yearFor ? yearFor.value : 'None';
           
             if(valuee >= 8 && valuee <= 11){
 
-               discountAmount = (5 / 100) * calcAmount; // 5% discount applied
+               discountAmount = (5 / 100) * calcAmount; 
                amountAfterDiscount = calcAmount - discountAmount; // Subtract the discount
                amountAfterDiscount = amountAfterDiscount.toString();
                amountTopay = amountAfterDiscount;
@@ -5483,7 +5629,7 @@ function serialize(obj) {
 
 function onlineClass(){
 
-alert("Pending payment...");
+   alert("Pending payment...");
 
 }
 

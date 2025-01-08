@@ -1998,7 +1998,6 @@ public class PgController {
 							 /*TUTORS BY LOCATIONS*/
 							 
 							 @GetMapping("/tutors-in-{location}")
-							
 							 public ModelAndView byLocationList(@PathVariable String location,@RequestParam(value = "page", defaultValue = "1") int currentPage) {
 							
 								 return byLocation(location, currentPage);
@@ -2162,10 +2161,25 @@ public class PgController {
 							    }
 							 
 							 /*TUTORS BY SUBJECTS*/
-							     
+							 
 							 @GetMapping("/{subjectv}-tutors")
+							 public ModelAndView bySubjectsList(@PathVariable String subjectv,@RequestParam(value = "page", defaultValue = "1") int currentPage) {
+							
+								 return bySubjects(subjectv, currentPage);
+							 }
+							 
+						     @GetMapping("/{subjectv}-{currentPage}-tutor")
 							 @ResponseBody
-							 public ModelAndView bySubjects(@PathVariable String subjectv, HttpSession session) {
+							 public ModelAndView bySubjectsPagination(@PathVariable String subjectv, @PathVariable int currentPage ) {
+								 
+						    	 System.out.println("Subject : " + subjectv);
+						    	 System.out.println("Page Number : " + currentPage);
+						    	 return bySubjects(subjectv, currentPage);
+								 
+							 } 
+							     
+							 @GetMapping("/bySubjects")
+							 public ModelAndView bySubjects(@PathVariable String subjectv, int currentPage) {
 
 							    	String search = "s"+subjectv;
 							    	
@@ -2230,11 +2244,6 @@ public class PgController {
 							    	
 							 }
 							    	
-							    	
-							    	/*perform online & in person logic...*/
-							    	
-
-							        System.out.println("Search Input: " + search); // For debugging
 
 							        // Split the search string by commas
 							        String[] searchParams = search.split(",");
@@ -2307,26 +2316,57 @@ public class PgController {
 							            })
 							            .collect(Collectors.toList());
 
-							        session.setAttribute("filteredTutors", filteredTutors);
+							        Page<Tutor> page = tutorService.paginateTutors(filteredTutors, currentPage);
+									
+								     long totalPages = page.getTotalPages();
+								     long totalItems = page.getTotalElements();
+								     List<Tutor> subjects = page.getContent();
+								     
+								     System.out.println("Tutors By Subject");
+								     System.out.println("Total pages " + totalPages);
+								     System.out.println("Total items " + totalItems);
 							        
-							        List<Tutor> tutorsOut = filteredTutors;
-							        
-							        ModelAndView data = new ModelAndView("tutorsBySubject.jsp");
-									data.addObject("tutors" , tutorsOut);
-									data.addObject("location" , subjectv);
-							
-									return data;
+								     
+								  // Create a ModelAndView object
+								     ModelAndView modelAndView = new ModelAndView();
+
+								     // Add attributes to the model
+								     modelAndView.addObject("currentPage", currentPage);
+								     modelAndView.addObject("totalPages", totalPages);
+								     modelAndView.addObject("totalItems", totalItems);
+								     modelAndView.addObject("subjects", subjects);
+								     modelAndView.addObject("location", subjectv);
+
+								     modelAndView.setViewName("tutorsBySubject.jsp"); 
+
+								     // Return the ModelAndView object
+								     return modelAndView;
 							        
 							    }
 							 
 							 /*TUTORS BY SYLLABUS*/
 							 
-							 @GetMapping("/syllabus-{location}")
+							 @GetMapping("/syllabus-{syllabus}")
+							 public ModelAndView bySyllabusList(@PathVariable String syllabus,@RequestParam(value = "page", defaultValue = "1") int currentPage) {
+							
+								 return bySyllabus(syllabus, currentPage);
+							 }
+							 
+						     @GetMapping("/tutor-syllabus-{syllabus}-{currentPage}")
 							 @ResponseBody
-							 public ModelAndView bySyllabus(@PathVariable String location, HttpSession session) {
-							     
+							 public ModelAndView bySyllabusPagination(@PathVariable String syllabus, @PathVariable int currentPage ) {
 								 
-								
+						    	 System.out.println("Subject : " + syllabus);
+						    	 System.out.println("Page Number : " + currentPage);
+						    	 return bySyllabus(syllabus, currentPage);
+								 
+							 } 
+							   
+							 
+							 @GetMapping("/bySyllabus")
+							 @ResponseBody
+							 public ModelAndView bySyllabus(String location, int currentPage) {
+							    
 							        String search = "c"+location;
 							      
 							        String[] v = search.split("_");
@@ -2418,8 +2458,6 @@ public class PgController {
 							                return matches;
 							            })
 							            .collect(Collectors.toList());
-
-							        session.setAttribute("filteredTutors", filteredTutors);
 							        
 							        String description = "";
 							        String title = "Expert " + location + " Tutors | Personalized Online and In-Person Lessons";
@@ -2457,20 +2495,36 @@ public class PgController {
 							        	}
 							        }
 							        
-							        List<Tutor> tutorsOut = filteredTutors;
+
+							        Page<Tutor> page = tutorService.paginateTutors(filteredTutors, currentPage);
+									
+								     long totalPages = page.getTotalPages();
+								     long totalItems = page.getTotalElements();
+								     List<Tutor> syllabusList = page.getContent();
+								     
+								     System.out.println("Tutors By Syllabus");
+								     System.out.println("Total pages " + totalPages);
+								     System.out.println("Total items " + totalItems);
 							        
-							        ModelAndView data = new ModelAndView("tutorsBySyllabus.jsp");
-									data.addObject("tutors" , tutorsOut);
-									data.addObject("location" , location);
-									data.addObject("description" , description);
-									data.addObject("title_title" , title);
-									
-						
-									return data;
-									
-									
-									
+								     
+								  // Create a ModelAndView object
+								     ModelAndView modelAndView = new ModelAndView();
+
+								     // Add attributes to the model
+								     modelAndView.addObject("currentPage", currentPage);
+								     modelAndView.addObject("totalPages", totalPages);
+								     modelAndView.addObject("totalItems", totalItems);
+								     modelAndView.addObject("subjects", syllabusList);
+								     modelAndView.addObject("location", location);
+								     modelAndView.addObject("description" , description);
+								     modelAndView.addObject("title_title" , title);
+								     
+								     modelAndView.setViewName("tutorsBySyllabus.jsp"); 
+
+								     // Return the ModelAndView object
+								     return modelAndView;
 							        
+
 							    }
 							 
 							 
